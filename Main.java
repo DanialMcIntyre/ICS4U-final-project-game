@@ -18,8 +18,9 @@ public class Main {
         frame.setLocationRelativeTo(null);
         frame.setTitle("TurboKartMania");
         frame.setVisible(true);
-        frame.add(panel);
 
+        frame.add(panel);
+        frame.addKeyListener(panel);
     }
 
 }
