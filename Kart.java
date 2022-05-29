@@ -9,8 +9,14 @@ public class Kart {
     private double yVelocity;
     private int angle;
 
-    private final static int width = 150;
-    private final static int height = 75;
+    private final static int width = 75;
+    private final static int height = 37;
+
+    private final static int acceleration = 3;
+    private double accTime = 0;
+    private boolean isAccelerating = false;
+
+    private double frictionLevel = 0.0;
 
     private BufferedImage kart;
 
@@ -59,6 +65,14 @@ public class Kart {
         return height;
     }
 
+    public double getAccTime() {
+        return this.accTime;
+    }
+
+    public boolean getIsAccelerating() {
+        return this.isAccelerating;
+    }
+
     //Setters
 
     public void setXPos(int x) {
@@ -81,11 +95,42 @@ public class Kart {
         this.angle = angle;
     }
 
-    //Draw function
+    public void setAccTime(double t) {
+        this.accTime = t;
+    }
 
+    public void setIsAccelerating(boolean a) {
+        this.isAccelerating = a;
+    }
+
+    //Draw function
     public void draw(Graphics g) {
         g.drawImage(this.kart, this.xPos, this.yPos, width, height, null);
     } 
+
+    //Calculates the amount the car moves per frame
+    public int moveKartAmount(int acceleration, double accTime) {
+        return (int)((acceleration * accTime) * 0.75);
+    }
+
+    public void updateKart() {
+
+        //Move car
+        this.setXPos(this.xPos + moveKartAmount(acceleration, this.accTime));
+
+        //Keep Inertia
+        if (this.isAccelerating == false && this.accTime > 0) {
+            this.accTime -= 0.2 + this.frictionLevel;
+        }
+        if (this.accTime < 0) {
+            this.accTime = 0;
+        }
+
+        if (this.getXPos() > 1920) {
+            this.setXPos(0);
+        }
+
+    }
     
     
 }
