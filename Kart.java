@@ -1,5 +1,7 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.awt.geom.AffineTransform;
+import java.awt.image.*;
 
 public class Kart {
 
@@ -9,8 +11,10 @@ public class Kart {
     private double yVelocity;
     private int angle;
 
+    
+
     private final static int width = 75;
-    private final static int height = 37;
+    private final static int height = 75;
 
     private final static int acceleration = 3;
     private double accTime = 0;
@@ -105,7 +109,17 @@ public class Kart {
 
     //Draw function
     public void draw(Graphics g) {
-        g.drawImage(this.kart, this.xPos, this.yPos, width, height, null);
+
+        double rotationRequired = Math.toRadians(angle);
+        double locationX = kart.getWidth() / 2;
+        double locationY =  kart.getHeight() / 2;
+
+        AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
+        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
+
+        g.drawImage(op.filter(this.kart, null), this.xPos, this.yPos, width, height, null);
+
+        //g.drawImage(this.kart, this.xPos, this.yPos, width, height, null);
     } 
 
     //Calculates the amount the car moves per frame

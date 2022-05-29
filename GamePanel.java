@@ -71,7 +71,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
 
         //Move forward
         if (e.getKeyCode() == KeyEvent.VK_W) {
-            kart.setIsAccelerating(true);;
+            kart.setIsAccelerating(true);
             if (kart.getAccTime() < 7) {
                 kart.setAccTime(kart.getAccTime() + 1);  
             }
