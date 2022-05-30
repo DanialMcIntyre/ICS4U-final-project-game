@@ -14,7 +14,7 @@ public class Kart extends Physics{
     private final static int width = 75;
     private final static int height = 75;
 
-    private final static int acceleration = 2;
+    private final static int acceleration = 1;
     private double accTime = 0;
     private boolean isAccelerating = false;
 
@@ -121,7 +121,8 @@ public class Kart extends Physics{
     public void updateKart() {
 
         //Move car
-        this.setXPos(this.xPos + moveKartAmount(acceleration, this.accTime, this.angle));
+        this.setXPos(this.xPos + moveKartAmountX(acceleration, this.accTime, this.angle));
+        this.setYPos(this.yPos - moveKartAmountY(acceleration, this.accTime, this.angle));
 
         //Keep Inertia
         this.accTime = inertia(this.isAccelerating, this.accTime, this.frictionLevel);

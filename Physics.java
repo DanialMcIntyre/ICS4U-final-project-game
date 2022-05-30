@@ -1,3 +1,5 @@
+import java.lang.Math;
+
 public class Physics {
     
     public double inertia(boolean isAcc, double accT, double fric) {
@@ -11,7 +13,11 @@ public class Physics {
         return accT;
     }
 
-    public int moveKartAmount(int acceleration, double accTime, int angle) {
-        return (int)((acceleration * accTime));
+    public int moveKartAmountX(int acceleration, double accTime, int angle) {
+        return (int)((acceleration * accTime)* Math.cos(Math.toRadians(angle)));
+    }
+
+    public int moveKartAmountY(int acceleration, double accTime, int angle) {
+        return (int)((acceleration * accTime)* Math.sin(Math.toRadians(angle)));
     }
 }
