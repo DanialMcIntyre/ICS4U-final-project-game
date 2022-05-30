@@ -11,12 +11,10 @@ public class Kart {
     private double yVelocity;
     private int angle;
 
-    
-
     private final static int width = 75;
     private final static int height = 75;
 
-    private final static int acceleration = 3;
+    private final static int acceleration = 2;
     private double accTime = 0;
     private boolean isAccelerating = false;
 
@@ -118,13 +116,11 @@ public class Kart {
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
         g.drawImage(op.filter(this.kart, null), this.xPos, this.yPos, width, height, null);
-
-        //g.drawImage(this.kart, this.xPos, this.yPos, width, height, null);
     } 
 
     //Calculates the amount the car moves per frame
     public int moveKartAmount(int acceleration, double accTime) {
-        return (int)((acceleration * accTime) * 0.75);
+        return (int)((acceleration * accTime));
     }
 
     public void updateKart() {
