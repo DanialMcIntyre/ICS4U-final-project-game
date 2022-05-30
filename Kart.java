@@ -108,7 +108,7 @@ public class Kart {
     //Draw function
     public void draw(Graphics g) {
 
-        double rotationRequired = Math.toRadians(angle);
+        double rotationRequired = -Math.toRadians(angle);
         double locationX = kart.getWidth() / 2;
         double locationY =  kart.getHeight() / 2;
 
@@ -140,7 +140,6 @@ public class Kart {
             this.setXPos(0);
         }
 
-    }
-    
+    }    
     
 }

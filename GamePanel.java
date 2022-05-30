@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         super.paint(g);
 
         g.setFont(new Font("TimesRoman", Font.PLAIN, 50)); 
-        g.drawString("Speed: " + String.valueOf(kart.moveKartAmount(3, kart.getAccTime())), 500, 500);
+        g.drawString("Speed: " + String.valueOf(kart.moveKartAmount(2, kart.getAccTime())), 500, 500);
 
         g.drawImage(background, 100, 100, 200, 200, null);
         
@@ -81,18 +81,16 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         }
 
         if (e.getKeyCode() == KeyEvent.VK_D) {
-            if (kart.getAngle() == 360) {
-                kart.setAngle(1);
-            } else {
-                kart.setAngle(kart.getAngle() + 1);
+            kart.setAngle(kart.getAngle() - 1);
+            if (kart.getAngle() == -1) {
+                kart.setAngle(359);
             }
         }
 
         if (e.getKeyCode() == KeyEvent.VK_A) {
-            if (kart.getAngle() == 1) {
-                kart.setAngle(360);
-            } else {
-                kart.setAngle(kart.getAngle() - 1);
+            kart.setAngle(kart.getAngle() + 1);
+            if (kart.getAngle() == 360) {
+                kart.setAngle(0);
             }
         }
     }
