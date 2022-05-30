@@ -41,7 +41,7 @@ public class GamePanel extends JPanel implements ActionListener, KeyListener {
         super.paint(g);
 
         g.setFont(new Font("TimesRoman", Font.PLAIN, 50)); 
-        g.drawString("Speed: " + String.valueOf(kart.moveKartAmount(2, kart.getAccTime())), 500, 500);
+        g.drawString("Speed: " + String.valueOf(kart.moveKartAmount(2, kart.getAccTime(), kart.getAngle())), 500, 500);
 
         g.drawImage(background, 100, 100, 200, 200, null);
         

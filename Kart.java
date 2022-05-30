@@ -3,7 +3,7 @@ import java.awt.image.BufferedImage;
 import java.awt.geom.AffineTransform;
 import java.awt.image.*;
 
-public class Kart {
+public class Kart extends Physics{
 
     private int xPos;
     private int yPos;
@@ -116,25 +116,15 @@ public class Kart {
         AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
 
         g.drawImage(op.filter(this.kart, null), this.xPos, this.yPos, width, height, null);
-    } 
-
-    //Calculates the amount the car moves per frame
-    public int moveKartAmount(int acceleration, double accTime) {
-        return (int)((acceleration * accTime));
     }
 
     public void updateKart() {
 
         //Move car
-        this.setXPos(this.xPos + moveKartAmount(acceleration, this.accTime));
+        this.setXPos(this.xPos + moveKartAmount(acceleration, this.accTime, this.angle));
 
         //Keep Inertia
-        if (this.isAccelerating == false && this.accTime > 0) {
-            this.accTime -= 0.2 + this.frictionLevel;
-        }
-        if (this.accTime < 0) {
-            this.accTime = 0;
-        }
+        this.accTime = inertia(this.isAccelerating, this.accTime, this.frictionLevel);
 
         if (this.getXPos() > 1920) {
             this.setXPos(0);
