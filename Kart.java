@@ -118,6 +118,33 @@ public class Kart extends Physics{
         g.drawImage(op.filter(this.kart, null), this.xPos, this.yPos, width, height, null);
     }
 
+    //W key pressed
+    public void moveForward() {
+        setIsAccelerating(true);
+        if (getAccTime() < 7) {
+            setAccTime(getAccTime() + 1);  
+        }
+        if (getAccTime() > 7) {
+            setAccTime(7);
+        }
+    }
+
+    //D key pressed
+    public void moveRight() {
+        setAngle(getAngle() - 3);
+        if (getAngle() <= -1) {
+            setAngle(359);
+        }        
+    }
+
+    //A key pressed
+    public void moveLeft() {
+        setAngle(getAngle() + 3);
+        if (getAngle() >= 360) {
+            setAngle(0);
+        }        
+    }
+
     public void updateKart() {
 
         //Move car
