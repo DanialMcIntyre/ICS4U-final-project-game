@@ -14,10 +14,10 @@ public class Physics {
     }
  
     public int moveKartAmountX(int acceleration, double accTime, int angle) {
-        return (int)((acceleration * accTime)* Math.cos(Math.toRadians(angle)));
+        return (int)Math.round((acceleration * accTime)* Math.cos(Math.toRadians(angle)));
     }
  
     public int moveKartAmountY(int acceleration, double accTime, int angle) {
-        return (int)((acceleration * accTime)* Math.sin(Math.toRadians(angle)));
+        return (int)Math.round((acceleration * accTime)* Math.sin(Math.toRadians(angle)));
     }
 }

@@ -111,15 +111,20 @@ public class Kart extends Physics{
  
     //Draw function
     public void draw(Graphics g) {
- 
-        double rotationRequired = -Math.toRadians(angle);
-        double locationX = kart.getWidth() / 2;
-        double locationY =  kart.getHeight() / 2;
- 
-        AffineTransform tx = AffineTransform.getRotateInstance(rotationRequired, locationX, locationY);
-        AffineTransformOp op = new AffineTransformOp(tx, AffineTransformOp.TYPE_BILINEAR);
- 
-        g.drawImage(op.filter(this.kart, null), this.xPos, this.yPos, width, height, null);
+        double radian = -Math.toRadians(angle);
+        int width = kart.getWidth();
+        int height = kart.getHeight();
+
+        BufferedImage rotatedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+        Graphics2D graphics = rotatedImage.createGraphics();
+        graphics.setRenderingHint(RenderingHints.KEY_INTERPOLATION,RenderingHints.VALUE_INTERPOLATION_BICUBIC);
+        
+        // rotation around the center point
+        graphics.rotate(radian, (double) (width / 2), (double) (height / 2));
+        graphics.drawImage(kart, 0, 0, width, height, null);
+        graphics.dispose();
+
+        g.drawImage(rotatedImage, this.xPos, this.yPos, this.getWidth(), this.getHeight(), null);
     }
  
     //W key pressed
