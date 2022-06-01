@@ -2,14 +2,15 @@ import java.lang.Math;
  
 public class Physics {
    
-    public double inertia(boolean isAcc, double accT, double fric) {
+    public double inertia(boolean isAcc, boolean isDecc, double accT, double fric) {
         if (!(isAcc) && accT > 0) {
             accT -= 0.2 + fric;
         }
-       
-        if (accT < 0) {
-            accT = 0;
+
+        if (!(isDecc) && accT < 0) {
+            accT += 0.2 + fric;
         }
+
         return accT;
     }
  

@@ -1,7 +1,7 @@
 import java.awt.*;
 import java.awt.image.BufferedImage;
  
-public class Kart extends Physics{
+public class Kart extends Physics {
  
     private int xPos;
     private int yPos;
@@ -15,6 +15,7 @@ public class Kart extends Physics{
     private final static int acceleration = 1;
     private double accTime = 0;
     private boolean isAccelerating = false;
+    private boolean isDeccelerating = false;
  
     private double frictionLevel = 0.0;
  
@@ -76,7 +77,11 @@ public class Kart extends Physics{
     public boolean getIsAccelerating() {
         return this.isAccelerating;
     }
- 
+
+    public boolean getIsDeccelerating() {
+        return this.isDeccelerating;
+    }
+
     //Setters
  
     public void setXPos(int x) {
@@ -107,6 +112,10 @@ public class Kart extends Physics{
         this.isAccelerating = a;
     }
  
+    public void setIsDeccelerating(boolean a) {
+        this.isDeccelerating = a;
+    }
+
     //Draw function
     public void draw(Graphics g) {
         double radian = -Math.toRadians(angle);
@@ -135,6 +144,17 @@ public class Kart extends Physics{
             setAccTime(10);
         }
     }
+
+    //W key pressed
+    public void moveBackwards() {
+        setIsDeccelerating(true);
+        if (getAccTime() > -3) {
+            setAccTime(getAccTime() - 0.1);  
+        }
+        if (getAccTime() < -3) {
+            setAccTime(-3);
+        }
+    }
  
     //D key pressed
     public void moveRight() {
@@ -159,7 +179,7 @@ public class Kart extends Physics{
         this.setYPos(this.yPos - moveKartAmountY(acceleration, this.accTime, this.angle));
  
         //Keep Inertia
-        this.accTime = inertia(this.isAccelerating, this.accTime, this.frictionLevel);
+        this.accTime = inertia(this.isAccelerating, this.isDeccelerating, this.accTime, this.frictionLevel);
  
         if (this.getXPos() > 1920) {
             this.setXPos(0);

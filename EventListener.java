@@ -21,8 +21,12 @@ public class EventListener extends GamePanel implements KeyListener {
                     if (pressedKeys.contains(KeyEvent.VK_W) || pressedKeys.contains(KeyEvent.VK_UP)) {
                         kart.moveForward();
                     }
+
+                    if (pressedKeys.contains(KeyEvent.VK_S) || pressedKeys.contains(KeyEvent.VK_DOWN)) {
+                        kart.moveBackwards();
+                    }
            
-                    if (kart.getAccTime() > 0) {
+                    if (kart.getAccTime() != 0) {
  
                         if (pressedKeys.contains(KeyEvent.VK_D) || pressedKeys.contains(KeyEvent.VK_RIGHT)) {
                             kart.moveRight();
@@ -59,6 +63,10 @@ public class EventListener extends GamePanel implements KeyListener {
  
         if (e.getKeyCode() == KeyEvent.VK_W || e.getKeyCode() == KeyEvent.VK_UP) {
             kart.setIsAccelerating(false);
+        }
+
+        if (e.getKeyCode() == KeyEvent.VK_S || e.getKeyCode() == KeyEvent.VK_DOWN) {
+            kart.setIsDeccelerating(false);
         }
  
     }

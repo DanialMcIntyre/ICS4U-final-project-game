@@ -8,20 +8,24 @@ import javax.imageio.ImageIO;
 public class GamePanel extends JPanel implements ActionListener {
  
     //Declaring variables
+    Main main = new Main();
+
     final int framerate = 100;
     Timer timer = new Timer(1000 / framerate, this);
- 
-    private BufferedImage background;
+
     private BufferedImage kartImg;
  
     Kart kart;
+
+    RectangleObstacle ro1 = new RectangleObstacle(500, 10, 500, 100, true);
+
+    CircleObstacle co1 = new CircleObstacle(100, 200, 50, 100, true);
    
     public GamePanel() {
  
         //Getting images
         try {
  
-            background = ImageIO.read(getClass().getResourceAsStream("images/misc/dirt.png"));
             kartImg = ImageIO.read(getClass().getResourceAsStream("images/misc/kart.png"));
  
             kart = new Kart(100, 100, 0, 0, 0, kartImg);
@@ -39,14 +43,21 @@ public class GamePanel extends JPanel implements ActionListener {
  
         //Clears screen
         super.paint(g);
- 
+
+        g.setColor(Color.GREEN);
+        g.fillRect(0, 0, 1920, 1080);
+
+        g.setColor(Color.WHITE);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
         g.drawString("Speed: " + String.valueOf(kart.getAcceleration() * kart.getAccTime()), 500, 500);
- 
-        g.drawImage(background, 100, 100, 200, 200, null);
-       
+
         kart.draw(g);
-   
+
+        ro1.draw(g);
+        co1.draw(g);
+
+        ro1.collision(kart);
+
         timer.start();
  
     }
