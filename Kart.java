@@ -17,6 +17,7 @@ public class Kart extends Physics {
     private boolean isAccelerating = false;
     private boolean isDeccelerating = false;
  
+    private double tractionLevel = 1;
     private double frictionLevel = 0.0;
  
     private BufferedImage kart;
@@ -82,6 +83,10 @@ public class Kart extends Physics {
         return this.isDeccelerating;
     }
 
+    public double getTractionLevel() {
+        return this.tractionLevel;
+    }
+
     //Setters
  
     public void setXPos(int x) {
@@ -114,6 +119,10 @@ public class Kart extends Physics {
  
     public void setIsDeccelerating(boolean a) {
         this.isDeccelerating = a;
+    }
+
+    public void setTractionLevel(double t) {
+        this.tractionLevel = t;
     }
 
     //Draw function
@@ -175,8 +184,8 @@ public class Kart extends Physics {
     public void updateKart() {
  
         //Move car
-        this.setXPos(this.xPos + moveKartAmountX(acceleration, this.accTime, this.angle));
-        this.setYPos(this.yPos - moveKartAmountY(acceleration, this.accTime, this.angle));
+        this.setXPos((int)Math.round(this.xPos + moveKartAmountX(acceleration, this.accTime, this.angle) / this.tractionLevel));
+        this.setYPos((int)Math.round(this.yPos - moveKartAmountY(acceleration, this.accTime, this.angle) / this.tractionLevel));
  
         //Keep Inertia
         this.accTime = inertia(this.isAccelerating, this.isDeccelerating, this.accTime, this.frictionLevel);

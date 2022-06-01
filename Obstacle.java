@@ -1,3 +1,4 @@
+import java.awt.*;
 
 public class Obstacle {
 
@@ -5,14 +6,16 @@ public class Obstacle {
     private int y;
     private int width;
     private int height;
+    private Color color;
 
     private boolean tangible;
 
-    public Obstacle(int x, int y, int w, int h, boolean t) {
+    public Obstacle(int x, int y, int w, int h, Color c, boolean t) {
         this.x = x;
         this.y = y;
         this.width = w;
         this.height = h;
+        this.color = c;
         this.tangible = t;
     }
 
@@ -30,6 +33,10 @@ public class Obstacle {
 
     public int getHeight() {
         return this.height;
+    }
+
+    public Color getColor() {
+        return this.color;
     }
 
     public boolean isTangible() {
@@ -50,6 +57,10 @@ public class Obstacle {
 
     public void setHeight(int h) {
         this.height = h;
+    }
+
+    public void setColor(Color c) {
+        this.color = c;
     }
 
     public void setIsTangible(boolean t) {

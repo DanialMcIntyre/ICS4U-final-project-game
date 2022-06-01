@@ -26,7 +26,7 @@ public class EventListener extends GamePanel implements KeyListener {
                         kart.moveBackwards();
                     }
            
-                    if (kart.getAccTime() != 0) {
+                    if (kart.getAccTime() > 0.1 || kart.getAccTime() < -0.1) {
  
                         if (pressedKeys.contains(KeyEvent.VK_D) || pressedKeys.contains(KeyEvent.VK_RIGHT)) {
                             kart.moveRight();

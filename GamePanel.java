@@ -17,9 +17,11 @@ public class GamePanel extends JPanel implements ActionListener {
  
     Kart kart;
 
-    RectangleObstacle ro1 = new RectangleObstacle(500, 10, 500, 100, true);
+    CollidableRectangleObstacle ro1 = new CollidableRectangleObstacle(200, 500, 1500, 100, Color.BLACK, true);
 
-    CircleObstacle co1 = new CircleObstacle(100, 200, 50, 100, true);
+    UncollidableRectangleObstacle uro1 = new UncollidableRectangleObstacle(1000, 250, 200, 600, Color.DARK_GRAY, true);
+
+    CircleObstacle co1 = new CircleObstacle(100, 200, 50, 100, Color.BLUE, true);
    
     public GamePanel() {
  
@@ -49,14 +51,13 @@ public class GamePanel extends JPanel implements ActionListener {
 
         g.setColor(Color.WHITE);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-        g.drawString("Speed: " + String.valueOf(kart.getAcceleration() * kart.getAccTime()), 500, 500);
+        g.drawString("Speed: " + String.valueOf((kart.getAcceleration() * kart.getAccTime()) / kart.getTractionLevel()), 500, 500);
 
-        kart.draw(g);
-
+        uro1.draw(g);
         ro1.draw(g);
         co1.draw(g);
 
-        ro1.collision(kart);
+        kart.draw(g);
 
         timer.start();
  
@@ -65,8 +66,11 @@ public class GamePanel extends JPanel implements ActionListener {
     //Game loop
     public void actionPerformed(ActionEvent e) {
  
+        ro1.collision(kart);
+        uro1.collision(kart);
+
         kart.updateKart();
-       
+
         //Repaints screen
         repaint();
  
