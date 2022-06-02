@@ -19,15 +19,16 @@ public class GamePanel extends JPanel implements ActionListener {
     Timer timer = new Timer(1000 / framerate, this);
 
     private BufferedImage kartImg;
+    private BufferedImage startLineImg;
     private int lapCount = 0;
     private boolean checkPointHit = false;
  
     //Objects
     Kart kart;
+    RectangleObstacle checkeredLine;
 
     RectangleObstacle ro1 = new RectangleObstacle(200, 500, 1500, 100, Color.BLACK, true);
     RectangleObstacle ro2 = new RectangleObstacle(1000, 250, 200, 600, Color.DARK_GRAY, true);
-    RectangleObstacle checkeredLine = new RectangleObstacle(300, 250, 50, 250, Color.WHITE, true);
     RectangleObstacle checkPointLine = new RectangleObstacle(300, 600, 50, 250, Color.MAGENTA, true);
     CircleObstacle co1 = new CircleObstacle(100, 200, 50, 100, Color.BLUE, true);
    
@@ -37,8 +38,10 @@ public class GamePanel extends JPanel implements ActionListener {
         try {
  
             kartImg = ImageIO.read(getClass().getResourceAsStream("/images/misc/kart.png"));
+            startLineImg = ImageIO.read(getClass().getResourceAsStream("/images/misc/startLine.png"));
  
             kart = new Kart(100, 100, 0, 0, 0, kartImg);
+            checkeredLine = new RectangleObstacle(300, 250, 200, 250, Color.WHITE, true, startLineImg);
  
         } catch (IOException e) {
  
