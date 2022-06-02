@@ -23,8 +23,8 @@ public class GamePanel extends JPanel implements ActionListener {
     //Objects
     Kart kart;
 
-    CollidableRectangleObstacle ro1 = new CollidableRectangleObstacle(200, 500, 1500, 100, Color.BLACK, true);
-    UncollidableRectangleObstacle uro1 = new UncollidableRectangleObstacle(1000, 250, 200, 600, Color.DARK_GRAY, true);
+    RectangleObstacle ro1 = new RectangleObstacle(200, 500, 1500, 100, Color.BLACK, true);
+    RectangleObstacle ro2 = new RectangleObstacle(1000, 250, 200, 600, Color.DARK_GRAY, true);
     CircleObstacle co1 = new CircleObstacle(100, 200, 50, 100, Color.BLUE, true);
    
     public GamePanel() {
@@ -59,8 +59,8 @@ public class GamePanel extends JPanel implements ActionListener {
         g.drawString("Speed: " + String.valueOf(Math.round((kart.getAcceleration() * kart.getAccTime()) / kart.getTractionLevel())), 500, 500);
 
         //Draws obstacles
-        uro1.draw(g);
         ro1.draw(g);
+        ro2.draw(g);
         co1.draw(g);
 
         //Draws kart
@@ -75,14 +75,32 @@ public class GamePanel extends JPanel implements ActionListener {
  
         //Checks collision for obstacles
         ro1.collision(kart);
-        uro1.collision(kart);
+        ro2.collision(kart);
+
+        onCollision();
 
         //Updates kart position
         kart.updateKart();
 
+
         //Repaints screen
         repaint();
  
+    }
+
+    //Does stuff when collision occur
+    public void onCollision() {
+
+        if (ro1.getIsCollided() && !(kart.getIsDeccelerating())) {
+            kart.setAccTime(0);
+        }
+
+        if (ro2.getIsCollided()) {
+            kart.setTractionLevel(2);
+        } else {
+            kart.setTractionLevel(1);
+        }
+
     }
  
 }
