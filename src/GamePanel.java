@@ -19,12 +19,16 @@ public class GamePanel extends JPanel implements ActionListener {
     Timer timer = new Timer(1000 / framerate, this);
 
     private BufferedImage kartImg;
+    private int lapCount = 0;
+    private boolean checkPointHit = false;
  
     //Objects
     Kart kart;
 
     RectangleObstacle ro1 = new RectangleObstacle(200, 500, 1500, 100, Color.BLACK, true);
     RectangleObstacle ro2 = new RectangleObstacle(1000, 250, 200, 600, Color.DARK_GRAY, true);
+    RectangleObstacle checkeredLine = new RectangleObstacle(300, 250, 50, 250, Color.WHITE, true);
+    RectangleObstacle checkPointLine = new RectangleObstacle(300, 600, 50, 250, Color.MAGENTA, true);
     CircleObstacle co1 = new CircleObstacle(100, 200, 50, 100, Color.BLUE, true);
    
     public GamePanel() {
@@ -57,10 +61,14 @@ public class GamePanel extends JPanel implements ActionListener {
         g.setColor(Color.WHITE);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
         g.drawString("Speed: " + String.valueOf(Math.round((kart.getAcceleration() * kart.getAccTime()) / kart.getTractionLevel())), 500, 500);
+        g.setFont(new Font("Georgia", Font.PLAIN, 24));
+        g.drawString("Laps Completed: " + String.valueOf(lapCount), 25, 25);
 
         //Draws obstacles
         ro1.draw(g);
         ro2.draw(g);
+        checkeredLine.draw(g);
+        checkPointLine.draw(g);
         co1.draw(g);
 
         //Draws kart
@@ -76,6 +84,8 @@ public class GamePanel extends JPanel implements ActionListener {
         //Checks collision for obstacles
         ro1.collision(kart);
         ro2.collision(kart);
+        checkPointLine.collision(kart);
+        checkeredLine.collision(kart);
 
         onCollision();
 
@@ -99,6 +109,15 @@ public class GamePanel extends JPanel implements ActionListener {
             kart.setTractionLevel(2);
         } else {
             kart.setTractionLevel(1);
+        }
+
+        if (checkPointLine.getIsCollided()) {
+            checkPointHit = true;
+        }
+
+        if (checkeredLine.getIsCollided() && checkPointHit) {
+            lapCount += 1;
+            checkPointHit = false;
         }
 
     }
