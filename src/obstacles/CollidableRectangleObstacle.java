@@ -1,5 +1,8 @@
+package src.obstacles;
 
 import java.awt.*;
+
+import src.*;
 
 public class CollidableRectangleObstacle extends Obstacle {
 

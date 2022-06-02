@@ -1,3 +1,5 @@
+package src.obstacles;
+
 import java.awt.*;
 
 public class CircleObstacle extends Obstacle {

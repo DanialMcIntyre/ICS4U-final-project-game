@@ -1,3 +1,5 @@
+package src;
+
 import javax.swing.*;
 import java.awt.*;
  
@@ -12,7 +14,7 @@ public class Main {
        
         JFrame frame = new JFrame();
        
-        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("images/misc/kart.png")));
+        frame.setIconImage(Toolkit.getDefaultToolkit().getImage(Main.class.getResource("/images/misc/kart.png")));
         frame.setBounds(0, 0, 1920, 1080);
         frame.setResizable(true);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
