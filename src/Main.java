@@ -23,6 +23,8 @@ public class Main {
         frame.setVisible(true);
  
         frame.addKeyListener(event);
+
+        panel.inGameTime.startTimer();
         frame.add(panel);
     }
  

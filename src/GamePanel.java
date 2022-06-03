@@ -17,6 +17,7 @@ public class GamePanel extends JPanel implements ActionListener {
     //Timers
     final int framerate = 100;
     Timer timer = new Timer(1000 / framerate, this);
+    GameTime inGameTime = new GameTime();
 
     private BufferedImage kartImg;
     private BufferedImage startLineImg;
@@ -41,7 +42,7 @@ public class GamePanel extends JPanel implements ActionListener {
             startLineImg = ImageIO.read(getClass().getResourceAsStream("/images/misc/startLine.png"));
  
             kart = new Kart(100, 100, 0, 0, 0, kartImg);
-            checkeredLine = new RectangleObstacle(300, 250, 200, 250, Color.WHITE, true, startLineImg);
+            checkeredLine = new RectangleObstacle(300, 250, 50, 250, Color.WHITE, true, startLineImg);
  
         } catch (IOException e) {
  
@@ -66,6 +67,7 @@ public class GamePanel extends JPanel implements ActionListener {
         g.drawString("Speed: " + String.valueOf(Math.round((kart.getAcceleration() * kart.getAccTime()) / kart.getTractionLevel())), 500, 500);
         g.setFont(new Font("Georgia", Font.PLAIN, 24));
         g.drawString("Laps Completed: " + String.valueOf(lapCount), 25, 25);
+        g.drawString("Elapsed Time: " + String.format("%.02f", inGameTime.getCurrentTime()), 250, 25);
 
         //Draws obstacles
         ro1.draw(g);
@@ -79,6 +81,10 @@ public class GamePanel extends JPanel implements ActionListener {
 
         timer.start();
  
+    }
+
+    public void wonGame() {
+        //Do we plan to create a new screen and such?
     }
  
     //Game loop
@@ -95,6 +101,9 @@ public class GamePanel extends JPanel implements ActionListener {
         //Updates kart position
         kart.updateKart();
 
+        if (lapCount == 5) {
+            wonGame();
+        }
 
         //Repaints screen
         repaint();
