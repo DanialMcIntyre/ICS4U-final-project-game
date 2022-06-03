@@ -8,15 +8,9 @@ import src.*;
 public class RectangleObstacle extends Obstacle {
 
     private boolean isCollided = false;
-    private BufferedImage obstImg;
 
     public RectangleObstacle(int x, int y, int w, int h, Color c, boolean t) {
         super(x, y, w, h, c, t);
-    }
-
-    public RectangleObstacle(int x, int y, int w, int h, Color c, boolean t, BufferedImage img) {
-        super(x, y, w, h, c, t);
-        obstImg = img;
     }
 
     public boolean getIsCollided() {
@@ -26,9 +20,12 @@ public class RectangleObstacle extends Obstacle {
     public void draw(Graphics g) {
         g.setColor(this.getColor());
         g.fillRect(this.getXPos(), this.getYPos(), this.getWidth(), this.getHeight());
-        if (obstImg != null) {
-            g.drawImage(obstImg, this.getXPos(), this.getYPos(), this.getWidth(), this.getHeight(), null);
-        }
+    }
+
+    public void draw(Graphics g, BufferedImage img) {
+        g.setColor(this.getColor());
+        g.fillRect(this.getXPos(), this.getYPos(), this.getWidth(), this.getHeight());
+        g.drawImage(img, this.getXPos(), this.getYPos(), this.getWidth(), this.getHeight(), null);
     }
 
     public void collision(Kart k) {
