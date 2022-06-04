@@ -7,16 +7,16 @@ import src.obstacles.*;
 
 public class Map2 extends GeneralMap {
 
-    RectangleObstacle ro1 = new RectangleObstacle(200, 500, 1500, 100, Color.BLACK, true);
-    RectangleObstacle ro2 = new RectangleObstacle(1850, 0, 100, 1080, Color.BLUE, true);
-    RectangleObstacle ro3 = new RectangleObstacle(0, 0, 20, 1080, Color.CYAN, true);
-    RectangleObstacle ro4 = new RectangleObstacle(0, 0, 1920, 50, Color.MAGENTA, true);
-    RectangleObstacle ro5 = new RectangleObstacle(0, 1000, 1920, 50, Color.YELLOW, true);
-    RectangleObstacle ro6 = new RectangleObstacle(1000, 0, 50, 500, Color.WHITE, true);
-    RectangleObstacle ro7 = new RectangleObstacle(1000, 600, 50, 500, Color.LIGHT_GRAY, true);
+    RectangleObstacle ro1 = new RectangleObstacle(200, 500, 1500, 100, Color.BLACK);
+    RectangleObstacle ro2 = new RectangleObstacle(1850, 0, 100, 1080, Color.BLUE);
+    RectangleObstacle ro3 = new RectangleObstacle(0, 0, 20, 1080, Color.CYAN);
+    RectangleObstacle ro4 = new RectangleObstacle(0, 0, 1920, 50, Color.MAGENTA);
+    RectangleObstacle ro5 = new RectangleObstacle(0, 1000, 1920, 50, Color.YELLOW);
+    RectangleObstacle ro6 = new RectangleObstacle(1000, 0, 50, 500, Color.WHITE);
+    RectangleObstacle ro7 = new RectangleObstacle(1000, 600, 50, 500, Color.LIGHT_GRAY);
 
     public void drawMap(Graphics g) {
-        ro1.draw(g);
+        ro1.draw(g, border);
         ro2.draw(g);
         ro3.draw(g);
         ro4.draw(g);

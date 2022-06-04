@@ -37,7 +37,6 @@ public class GamePanel extends JPanel implements ActionListener {
         try {
  
             kartImg = ImageIO.read(getClass().getResourceAsStream("/images/misc/kart.png"));
-            GeneralMap.startLineImg = ImageIO.read(getClass().getResourceAsStream("/images/misc/startLine.png"));
  
             kart = new Kart(100, 100, 0, 0, 0, kartImg);
  

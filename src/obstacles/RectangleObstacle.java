@@ -9,8 +9,8 @@ public class RectangleObstacle extends Obstacle {
 
     private boolean isCollided = false;
 
-    public RectangleObstacle(int x, int y, int w, int h, Color c, boolean t) {
-        super(x, y, w, h, c, t);
+    public RectangleObstacle(int x, int y, int w, int h, Color c) {
+        super(x, y, w, h, c);
     }
 
     public boolean getIsCollided() {

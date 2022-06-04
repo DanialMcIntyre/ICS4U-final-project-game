@@ -4,8 +4,14 @@ import java.awt.*;
 
 public class CircleObstacle extends Obstacle {
 
-    public CircleObstacle(int x, int y, int w, int h, Color c, boolean t) {
-        super(x, y, w, h, c, t);
+    private boolean isCollided = false;
+
+    public CircleObstacle(int x, int y, int w, int h, Color c) {
+        super(x, y, w, h, c);
+    }
+
+    public boolean getIsCollided() {
+        return this.isCollided;
     }
 
     public void draw(Graphics g) {

@@ -10,15 +10,12 @@ public class Obstacle {
     private int height;
     private Color color;
 
-    private boolean tangible;
-
-    public Obstacle(int x, int y, int w, int h, Color c, boolean t) {
+    public Obstacle(int x, int y, int w, int h, Color c) {
         this.x = x;
         this.y = y;
         this.width = w;
         this.height = h;
         this.color = c;
-        this.tangible = t;
     }
 
     public int getXPos() {
@@ -41,10 +38,6 @@ public class Obstacle {
         return this.color;
     }
 
-    public boolean isTangible() {
-        return this.tangible;
-    }
-
     public void setXPos(int x) {
         this.x = x;
     }
@@ -63,10 +56,6 @@ public class Obstacle {
 
     public void setColor(Color c) {
         this.color = c;
-    }
-
-    public void setIsTangible(boolean t) {
-        this.tangible = t;
     }
     
 }

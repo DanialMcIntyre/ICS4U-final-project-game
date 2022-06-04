@@ -7,16 +7,16 @@ import src.obstacles.*;
 
 public class Map1 extends GeneralMap {
 
-    RectangleObstacle ro1 = new RectangleObstacle(200, 500, 1500, 100, Color.BLACK, true);
-    RectangleObstacle ro2 = new RectangleObstacle(1000, 250, 200, 600, Color.DARK_GRAY, true);
-    RectangleObstacle checkPointLine = new RectangleObstacle(300, 600, 50, 250, Color.MAGENTA, true);
-    RectangleObstacle checkeredLine = new RectangleObstacle(300, 250, 50, 250, Color.WHITE, true);
-    CircleObstacle co1 = new CircleObstacle(100, 200, 50, 100, Color.BLUE, true);
+    RectangleObstacle ro1 = new RectangleObstacle(200, 500, 1500, 100, Color.BLACK);
+    RectangleObstacle ro2 = new RectangleObstacle(1000, 250, 200, 600, Color.DARK_GRAY);
+    RectangleObstacle checkPointLine = new RectangleObstacle(300, 600, 50, 250, Color.MAGENTA);
+    RectangleObstacle checkeredLine = new RectangleObstacle(300, 250, 50, 250, Color.WHITE);
+    CircleObstacle co1 = new CircleObstacle(100, 200, 50, 100, Color.BLUE);
 
     public void drawMap(Graphics g) {
-        //Draws obstacles
-        ro1.draw(g);
-        ro2.draw(g);
+        
+        ro2.draw(g, mud);
+        ro1.draw(g, border);
         checkeredLine.draw(g, startLineImg);
         checkPointLine.draw(g);
         co1.draw(g);
@@ -24,7 +24,7 @@ public class Map1 extends GeneralMap {
     }
 
     public void checkCollision(Kart kart) {
-        //Checks collision for obstacles
+        
         ro1.collision(kart);
         ro2.collision(kart);
         checkPointLine.collision(kart);
