@@ -15,6 +15,7 @@ public class Map1 extends GeneralMap {
 
     public void drawMap(Graphics g) {
         
+        this.drawBorder(g);
         ro2.draw(g, mud);
         ro1.draw(g, border);
         checkeredLine.draw(g, startLineImg);
@@ -25,6 +26,7 @@ public class Map1 extends GeneralMap {
 
     public void checkCollision(Kart kart) {
         
+        this.borderCollision(kart);
         ro1.collision(kart);
         ro2.collision(kart);
         checkPointLine.collision(kart);
@@ -34,6 +36,8 @@ public class Map1 extends GeneralMap {
 
     //Does stuff when collision occur
     public void onCollision(Kart kart) {
+
+        this.onBorderCollision(kart);
 
         if (ro1.getIsCollided() && !(kart.getIsDeccelerating())) {
             kart.setAccTime(0);

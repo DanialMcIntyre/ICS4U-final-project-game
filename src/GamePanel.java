@@ -25,7 +25,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     //Game stuff
     public int windowNum = 0;
-    public int mapNum = 0;
+    public int mapNum = 1;
     public int kartType = 8;
  
     //Objects

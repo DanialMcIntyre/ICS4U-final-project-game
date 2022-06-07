@@ -8,62 +8,38 @@ import src.obstacles.*;
 public class Map2 extends GeneralMap {
 
     RectangleObstacle ro1 = new RectangleObstacle(200, 500, 1500, 100, Color.BLACK);
-    RectangleObstacle ro2 = new RectangleObstacle(1850, 0, 100, 1080, Color.BLUE);
-    RectangleObstacle ro3 = new RectangleObstacle(0, 0, 20, 1080, Color.CYAN);
-    RectangleObstacle ro4 = new RectangleObstacle(0, 0, 1920, 50, Color.MAGENTA);
-    RectangleObstacle ro5 = new RectangleObstacle(0, 1000, 1920, 50, Color.YELLOW);
-    RectangleObstacle ro6 = new RectangleObstacle(1000, 0, 50, 500, Color.WHITE);
-    RectangleObstacle ro7 = new RectangleObstacle(1000, 600, 50, 500, Color.LIGHT_GRAY);
+    RectangleObstacle ro2 = new RectangleObstacle(1000, 0, 50, 500, Color.WHITE);
+    RectangleObstacle ro3 = new RectangleObstacle(1000, 600, 50, 500, Color.LIGHT_GRAY);
 
     public void drawMap(Graphics g) {
+        this.drawBorder(g);
         ro1.draw(g, border);
-        ro2.draw(g);
+        ro2.draw(g, startLineImg);
         ro3.draw(g);
-        ro4.draw(g);
-        ro5.draw(g);
-        ro6.draw(g, startLineImg);
-        ro7.draw(g);
     }
 
     public void checkCollision(Kart kart) {
+        this.borderCollision(kart);
         ro1.collision(kart);
         ro2.collision(kart);
         ro3.collision(kart);
-        ro4.collision(kart);
-        ro5.collision(kart);
-        ro6.collision(kart);
-        ro7.collision(kart);
         onCollision(kart);
     }
 
     //Does stuff when collision occur
     public void onCollision(Kart kart) {
 
+        this.onBorderCollision(kart);
+
         if (ro1.getIsCollided() && !(kart.getIsDeccelerating())) {
             kart.setAccTime(0);
         }
 
-        if (ro2.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
-        }
-
-        if (ro3.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
-        }
-
-        if (ro4.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
-        }
-
-        if (ro5.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
-        }
-
-        if (ro7.getIsCollided()) {
+        if (ro3.getIsCollided()) {
             checkPointHit = true;
         }
 
-        if (ro6.getIsCollided() && checkPointHit) {
+        if (ro2.getIsCollided() && checkPointHit) {
             lapCount += 1;
             checkPointHit = false;
         }
