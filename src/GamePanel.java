@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 import src.maps.*;
+import src.windows.*;
 
 import javax.imageio.ImageIO;
  
@@ -15,21 +16,21 @@ public class GamePanel extends JPanel implements ActionListener {
     Main main = new Main();
 
     //Timers
-    final int framerate = 100;
-    Timer timer = new Timer(1000 / framerate, this);
-    GameTime inGameTime = new GameTime();
+    public final int framerate = 100;
+    public Timer timer = new Timer(1000 / framerate, this);
+    public GameTime inGameTime = new GameTime();
 
     //Images
-    private BufferedImage kartImg;
+    public BufferedImage kartImg;
 
     //Game stuff
-    public int mapNum = 1;
+    public int windowNum = 0;
+    public int mapNum = 0;
  
     //Objects
-    Kart kart;
+    public Kart kart;
 
-    Map1 map1 = new Map1();
-    Map2 map2 = new Map2();
+    Game game = new Game();
     
     public GamePanel() {
  
@@ -37,6 +38,10 @@ public class GamePanel extends JPanel implements ActionListener {
         try {
  
             kartImg = ImageIO.read(getClass().getResourceAsStream("/images/misc/kart.png"));
+
+            GeneralMap.mud = ImageIO.read(getClass().getResourceAsStream("/images/misc/mud.png"));
+            GeneralMap.border = ImageIO.read(getClass().getResourceAsStream("/images/misc/border.png"));
+            GeneralMap.startLineImg = ImageIO.read(getClass().getResourceAsStream("/images/misc/startLine.png"));
  
             kart = new Kart(100, 100, 0, 0, 0, kartImg);
  
@@ -54,29 +59,11 @@ public class GamePanel extends JPanel implements ActionListener {
         //Clears screen
         super.paint(g);
 
-        //Background
-        g.setColor(Color.GREEN);
-        g.fillRect(0, 0, 1920, 1080);
-
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-        g.drawString("Speed: " + String.valueOf(Math.round((kart.getAcceleration() * kart.getAccTime()) / kart.getTractionLevel())), 500, 500);
-        g.setFont(new Font("Georgia", Font.PLAIN, 24));
-        g.drawString("Laps Completed: " + String.valueOf(GeneralMap.lapCount), 25, 100);
-        g.drawString("Elapsed Time: " + String.format("%.02f", inGameTime.getCurrentTime()), 250, 100);
-
-        switch (mapNum) {
+        switch(windowNum) {
             case 0:
-                map1.drawMap(g);
+                game.drawGame(g, kart, mapNum, inGameTime);
                 break;
-            case 1:
-                map2.drawMap(g);
-                break;
-                
         }
-
-        //Draws kart
-        kart.draw(g);
 
         timer.start();
  
@@ -94,10 +81,10 @@ public class GamePanel extends JPanel implements ActionListener {
 
         switch (mapNum) {
             case 0:
-                map1.checkCollision(kart);
+                game.map1.checkCollision(kart);
                 break;
             case 1:
-                map2.checkCollision(kart);
+                game.map2.checkCollision(kart);
                 break;
         }
 

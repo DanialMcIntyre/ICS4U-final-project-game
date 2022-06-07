@@ -1,7 +1,7 @@
 package src;
 
 public class GameTime {
-    private long startTime;
+    public long startTime;
 
     public void startTimer() {
         startTime = System.currentTimeMillis();
