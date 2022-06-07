@@ -21,11 +21,12 @@ public class GamePanel extends JPanel implements ActionListener {
     public GameTime inGameTime = new GameTime();
 
     //Images
-    public BufferedImage kartImg;
+    public BufferedImage[] kartImg = new BufferedImage[9];
 
     //Game stuff
     public int windowNum = 0;
     public int mapNum = 0;
+    public int kartType = 8;
  
     //Objects
     public Kart kart;
@@ -37,13 +38,21 @@ public class GamePanel extends JPanel implements ActionListener {
         //Getting images
         try {
  
-            kartImg = ImageIO.read(getClass().getResourceAsStream("/images/misc/kart.png"));
+            kartImg[0] = ImageIO.read(getClass().getResourceAsStream("/images/karts/redkart.png"));
+            kartImg[1] = ImageIO.read(getClass().getResourceAsStream("/images/karts/blackkart.png"));
+            kartImg[2] = ImageIO.read(getClass().getResourceAsStream("/images/karts/bluekart.png"));
+            kartImg[3] = ImageIO.read(getClass().getResourceAsStream("/images/karts/greenkart.png"));
+            kartImg[4] = ImageIO.read(getClass().getResourceAsStream("/images/karts/orangekart.png"));
+            kartImg[5] = ImageIO.read(getClass().getResourceAsStream("/images/karts/pinkkart.png"));
+            kartImg[6] = ImageIO.read(getClass().getResourceAsStream("/images/karts/purplekart.png"));
+            kartImg[7] = ImageIO.read(getClass().getResourceAsStream("/images/karts/tealkart.png"));
+            kartImg[8] = ImageIO.read(getClass().getResourceAsStream("/images/karts/yellowkart.png"));
 
-            GeneralMap.mud = ImageIO.read(getClass().getResourceAsStream("/images/misc/mud.png"));
-            GeneralMap.border = ImageIO.read(getClass().getResourceAsStream("/images/misc/border.png"));
-            GeneralMap.startLineImg = ImageIO.read(getClass().getResourceAsStream("/images/misc/startLine.png"));
+            GeneralMap.mud = ImageIO.read(getClass().getResourceAsStream("/images/mapparts/mud.png"));
+            GeneralMap.border = ImageIO.read(getClass().getResourceAsStream("/images/mapparts/border.png"));
+            GeneralMap.startLineImg = ImageIO.read(getClass().getResourceAsStream("/images/mapparts/startLine.png"));
  
-            kart = new Kart(100, 100, 0, 0, 0, kartImg);
+            kart = new Kart(100, 100, 0, 0, 0, kartImg[kartType]);
  
         } catch (IOException e) {
  
