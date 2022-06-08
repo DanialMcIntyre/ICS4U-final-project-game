@@ -35,18 +35,10 @@ public class GeneralMap {
     }
 
     public void onBorderCollision(Kart kart) {
-        if (border1.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
-        }
-        if (border2.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
-        }
-        if (border3.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
-        }
-        if (border4.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
-        } 
+        wallCollision(border1, kart);
+        wallCollision(border2, kart);
+        wallCollision(border3, kart);
+        wallCollision(border4, kart); 
     }
 
     public void finishLineLogic(RectangleObstacle cp, RectangleObstacle finish) {
@@ -58,6 +50,12 @@ public class GeneralMap {
         if (finish.getIsCollided() && checkPointHit) {
             lapCount += 1;
             checkPointHit = false;
+        }
+    }
+
+    public void wallCollision(RectangleObstacle wall, Kart kart) {
+        if (wall.getIsCollided() && !(kart.getIsDeccelerating())) {
+            kart.setAccTime(0);
         }
     }
     

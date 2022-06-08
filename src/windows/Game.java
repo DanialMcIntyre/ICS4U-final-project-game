@@ -36,6 +36,9 @@ public class Game {
         //Draws kart
         kart.draw(g);
 
+        g.setColor(new Color(255, 255, 255, 150));
+        g.fillRect(kart.getXPos(), kart.getYPos(), kart.getHeight(), kart.getWidth());
+
     }
     
 }

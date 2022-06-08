@@ -13,21 +13,27 @@ public class Map2 extends GeneralMap {
     RectangleObstacle finish = new RectangleObstacle(1000, 0, 50, 500, Color.WHITE);
     RectangleObstacle cp = new RectangleObstacle(1000, 600, 50, 500, Color.LIGHT_GRAY);
 
+    //Draws map
     public void drawMap(Graphics g) {
+
         this.drawBorder(g);
         middle.draw(g, border);
         right.draw(g, border);
         left.draw(g, border);
         finish.draw(g, startLineImg);
+
     }
 
+    //Checks collision of obstacles
     public void checkCollision(Kart kart) {
+
         this.borderCollision(kart);
         middle.collision(kart);
         right.collision(kart);
         left.collision(kart);
         finish.collision(kart);
         cp.collision(kart);
+
         onCollision(kart);
     }
 
@@ -37,17 +43,9 @@ public class Map2 extends GeneralMap {
         this.onBorderCollision(kart);
         this.finishLineLogic(cp, finish);
 
-        if (middle.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
-        }
-
-        if (right.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
-        }
-
-        if (left.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
-        }
+        wallCollision(middle, kart);
+        wallCollision(right, kart);
+        wallCollision(left, kart);
 
     }
     
