@@ -27,10 +27,10 @@ public class Game {
         switch (mapNum) {
             case 0:
                 map1.drawMap(g);
-                break;
+                break;  
             case 1:
                 map2.drawMap(g);
-                break;    
+                break;  
         }
 
         //Draws kart

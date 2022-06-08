@@ -21,7 +21,6 @@ public class GeneralMap {
     RectangleObstacle border4 = new RectangleObstacle(0, 945, 1920, 10, Color.BLACK);
 
     public void drawBorder(Graphics g) {
-        
         border1.draw(g);
         border2.draw(g);
         border3.draw(g);
@@ -48,6 +47,18 @@ public class GeneralMap {
         if (border4.getIsCollided() && !(kart.getIsDeccelerating())) {
             kart.setAccTime(0);
         } 
+    }
+
+    public void finishLineLogic(RectangleObstacle cp, RectangleObstacle finish) {
+        
+        if (cp.getIsCollided()) {
+            checkPointHit = true;
+        }
+
+        if (finish.getIsCollided() && checkPointHit) {
+            lapCount += 1;
+            checkPointHit = false;
+        }
     }
     
 }
