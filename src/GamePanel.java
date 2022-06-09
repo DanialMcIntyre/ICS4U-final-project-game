@@ -25,8 +25,8 @@ public class GamePanel extends JPanel implements ActionListener {
 
     //Game stuff
     public int windowNum = 0;
-    public int mapNum = 1;
-    public int kartType = 8;
+    public int mapNum = 2;
+    public int kartType = 6;
  
     //Objects
     public Kart kart;
@@ -94,6 +94,9 @@ public class GamePanel extends JPanel implements ActionListener {
                 break;
             case 1:
                 game.map2.checkCollision(kart);
+                break;
+            case 2:
+                game.map3.checkCollision(kart);
                 break;
         }
 

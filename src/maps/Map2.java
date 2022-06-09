@@ -16,12 +16,12 @@ public class Map2 extends GeneralMap {
     //Draws map
     public void drawMap(Graphics g) {
 
-        this.drawBorder(g);
         middle.draw(g, border);
         right.draw(g, border);
         left.draw(g, border);
         finish.draw(g, startLineImg);
 
+        this.drawBorder(g);
     }
 
     //Checks collision of obstacles
@@ -46,7 +46,6 @@ public class Map2 extends GeneralMap {
         wallCollision(middle, kart);
         wallCollision(right, kart);
         wallCollision(left, kart);
-
     }
     
 }

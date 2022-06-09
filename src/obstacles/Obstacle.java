@@ -9,6 +9,7 @@ public class Obstacle {
     private int width;
     private int height;
     private Color color;
+    private boolean isCollided;
 
     public Obstacle(int x, int y, int w, int h, Color c) {
         this.x = x;
@@ -38,6 +39,10 @@ public class Obstacle {
         return this.color;
     }
 
+    public boolean getIsCollided() {
+        return this.isCollided;
+    }
+
     public void setXPos(int x) {
         this.x = x;
     }
@@ -56,6 +61,10 @@ public class Obstacle {
 
     public void setColor(Color c) {
         this.color = c;
+    }
+
+    public void setIsCollided(boolean c) {
+        this.isCollided = c;
     }
     
 }
