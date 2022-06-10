@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements ActionListener {
     public BufferedImage[] kartImg = new BufferedImage[9];
 
     //Game stuff
-    public int windowNum = 4;
+    public int windowNum = 0;
     public int mapNum = 2;
     public int kartType = 3;
  
@@ -36,6 +36,7 @@ public class GamePanel extends JPanel implements ActionListener {
     Instructions instructions = new Instructions();
     Controls controls = new Controls();
     PlayMenu playMenu = new PlayMenu();
+    WinScreen winScreen = new WinScreen();
     
     public GamePanel() {
  
@@ -93,14 +94,13 @@ public class GamePanel extends JPanel implements ActionListener {
             case 4:
                 playMenu.drawPlayMenu(g, kartImg);
                 break;
+            case 5:
+                winScreen.drawWinScreen(g);
+                break;
         }
 
         timer.start();
  
-    }
-
-    public void wonGame() {
-        //Do we plan to create a new screen and such?
     }
  
     //Game loop
@@ -122,7 +122,7 @@ public class GamePanel extends JPanel implements ActionListener {
         }
 
         if (GeneralMap.lapCount == 5) {
-            wonGame();
+            windowNum = 5;
         }
 
         //Repaints screen
