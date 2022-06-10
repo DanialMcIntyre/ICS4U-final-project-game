@@ -1,4 +1,4 @@
-package src.windows;
+package src.gameWindows;
 
 import java.awt.*;
 

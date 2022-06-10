@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import javax.swing.*;
 
 import src.maps.*;
-import src.windows.*;
+import src.gameWindows.*;
 
 import javax.imageio.ImageIO;
  
@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements ActionListener {
     public BufferedImage[] kartImg = new BufferedImage[9];
 
     //Game stuff
-    public int windowNum = 0;
+    public int windowNum = 3;
     public int mapNum = 1;
     public int kartType = 8;
  
@@ -32,6 +32,9 @@ public class GamePanel extends JPanel implements ActionListener {
     public Kart kart;
 
     Game game = new Game();
+    MainMenu mainMenu = new MainMenu();
+    Instructions instructions = new Instructions();
+    Controls controls = new Controls();
     
     public GamePanel() {
  
@@ -51,6 +54,11 @@ public class GamePanel extends JPanel implements ActionListener {
             GeneralMap.mud = ImageIO.read(getClass().getResourceAsStream("/images/mapparts/mud.png"));
             GeneralMap.border = ImageIO.read(getClass().getResourceAsStream("/images/mapparts/border.png"));
             GeneralMap.startLineImg = ImageIO.read(getClass().getResourceAsStream("/images/mapparts/startLine.png"));
+            GeneralWindow.background = ImageIO.read(getClass().getResourceAsStream("/images/menu/background.jpg"));
+            GeneralWindow.logo = ImageIO.read(getClass().getResourceAsStream("/images/misc/turbokartmania.png"));
+            controls.mouseImg = ImageIO.read(getClass().getResourceAsStream("/images/menu/mouse.png"));
+            controls.wasdImg = ImageIO.read(getClass().getResourceAsStream("/images/menu/wasd.png"));
+            controls.arrowsImg = ImageIO.read(getClass().getResourceAsStream("/images/menu/arrows.png"));
  
             kart = new Kart(100, 100, 0, 0, 0, kartImg[kartType]);
  
@@ -71,6 +79,15 @@ public class GamePanel extends JPanel implements ActionListener {
         switch(windowNum) {
             case 0:
                 game.drawGame(g, kart, mapNum, inGameTime);
+                break;
+            case 1:
+                mainMenu.drawMainMenu(g);
+                break;
+            case 2:
+                instructions.drawInstructions(g);
+                break;
+            case 3:
+                controls.drawControls(g);
                 break;
         }
 
