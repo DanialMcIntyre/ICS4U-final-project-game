@@ -38,7 +38,6 @@ public class Controls extends GeneralWindow {
         g.drawString("Use your mouse to interact", 275, 300);
         g.drawString("with buttons and", 360, 350);
         g.drawString("various game elements", 305, 400);
-        g.fillRect((int)(1920*0.75), 0, 1, 1080);
 
         g.drawString("To control the car use the arrow", 1200, 300);
         g.drawString("keys. Change direction using the", 1195, 350);
