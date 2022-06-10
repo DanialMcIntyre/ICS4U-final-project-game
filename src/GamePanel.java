@@ -24,9 +24,9 @@ public class GamePanel extends JPanel implements ActionListener {
     public BufferedImage[] kartImg = new BufferedImage[9];
 
     //Game stuff
-    public int windowNum = 3;
-    public int mapNum = 1;
-    public int kartType = 8;
+    public int windowNum = 0;
+    public int mapNum = 2;
+    public int kartType = 3;
  
     //Objects
     public Kart kart;
@@ -111,6 +111,9 @@ public class GamePanel extends JPanel implements ActionListener {
                 break;
             case 1:
                 game.map2.checkCollision(kart);
+                break;
+            case 2:
+                game.map3.checkCollision(kart);
                 break;
         }
 

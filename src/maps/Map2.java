@@ -7,22 +7,33 @@ import src.obstacles.*;
 
 public class Map2 extends GeneralMap {
 
-    RectangleObstacle ro1 = new RectangleObstacle(200, 500, 1500, 100, Color.BLACK);
-    RectangleObstacle ro2 = new RectangleObstacle(1000, 0, 50, 500, Color.WHITE);
-    RectangleObstacle ro3 = new RectangleObstacle(1000, 600, 50, 500, Color.LIGHT_GRAY);
+    RectangleObstacle middle = new RectangleObstacle(200, 500, 1500, 100, Color.BLACK);
+    RectangleObstacle right = new RectangleObstacle(1600, 500, 100, 300, Color.BLACK);
+    RectangleObstacle left = new RectangleObstacle(200, 200, 100, 300, Color.BLACK);
+    RectangleObstacle finish = new RectangleObstacle(1000, 0, 50, 500, Color.WHITE);
+    RectangleObstacle cp = new RectangleObstacle(1000, 600, 50, 500, Color.LIGHT_GRAY);
 
+    //Draws map
     public void drawMap(Graphics g) {
+
+        middle.draw(g, border);
+        right.draw(g, border);
+        left.draw(g, border);
+        finish.draw(g, startLineImg);
+
         this.drawBorder(g);
-        ro1.draw(g, border);
-        ro2.draw(g, startLineImg);
-        ro3.draw(g);
     }
 
+    //Checks collision of obstacles
     public void checkCollision(Kart kart) {
+
         this.borderCollision(kart);
-        ro1.collision(kart);
-        ro2.collision(kart);
-        ro3.collision(kart);
+        middle.collision(kart);
+        right.collision(kart);
+        left.collision(kart);
+        finish.collision(kart);
+        cp.collision(kart);
+
         onCollision(kart);
     }
 
@@ -30,20 +41,11 @@ public class Map2 extends GeneralMap {
     public void onCollision(Kart kart) {
 
         this.onBorderCollision(kart);
+        this.finishLineLogic(cp, finish);
 
-        if (ro1.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
-        }
-
-        if (ro3.getIsCollided()) {
-            checkPointHit = true;
-        }
-
-        if (ro2.getIsCollided() && checkPointHit) {
-            lapCount += 1;
-            checkPointHit = false;
-        }
-
+        wallCollision(middle, kart);
+        wallCollision(right, kart);
+        wallCollision(left, kart);
     }
     
 }
