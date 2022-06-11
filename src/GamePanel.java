@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements ActionListener {
     public BufferedImage[] kartImg = new BufferedImage[9];
 
     //Game stuff
-    public int windowNum = 0;
+    public int windowNum = 5;
     public int mapNum = 2;
     public int kartType = 3;
  
@@ -95,7 +95,7 @@ public class GamePanel extends JPanel implements ActionListener {
                 playMenu.drawPlayMenu(g, kartImg);
                 break;
             case 5:
-                winScreen.drawWinScreen(g);
+                winScreen.drawWinScreen(g, kartImg[kartType]);
                 break;
         }
 
