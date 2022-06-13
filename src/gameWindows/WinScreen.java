@@ -9,6 +9,8 @@ public class WinScreen extends GeneralWindow{
     
     public void drawWinScreen(Graphics g, BufferedImage kart, Point p, boolean mouseClicked) {
 
+        windowNum = 5;
+
         Graphics2D g2 = (Graphics2D) g;
         Stroke oldStroke = g2.getStroke();
         g2.setStroke(new BasicStroke(7));

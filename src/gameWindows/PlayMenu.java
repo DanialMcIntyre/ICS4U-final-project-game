@@ -2,12 +2,16 @@ package src.gameWindows;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import src.GameTime;
 
 public class PlayMenu extends GeneralWindow {
 
     private int kartNum = 6;
+    public int windowNum = 4;
     
-    public void drawPlayMenu(Graphics g, BufferedImage[] karts) {
+    public void drawPlayMenu(Graphics g, BufferedImage[] karts, Point p, boolean mouseClicked, GameTime iGT) {
+
+        windowNum = 4;
 
         Graphics2D g2 = (Graphics2D) g;
         Stroke oldStroke = g2.getStroke();
@@ -18,7 +22,16 @@ public class PlayMenu extends GeneralWindow {
         int xPoly[] = {1880, 1780, 1000, 1100};
         int yPoly[] = {785, 945, 945, 785};
         Polygon p1 = new Polygon(xPoly, yPoly, 4);
-        g.setColor(Color.CYAN);
+        if (p1.contains(p)) {
+            g.setColor(new Color(24, 134, 153));
+
+            if (mouseClicked) {
+                iGT.startTimer();
+                windowNum = 0;
+            }
+        } else {
+            g.setColor(Color.CYAN);
+        }
         g.fillPolygon(p1);
         g.setColor(Color.BLACK);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 78));

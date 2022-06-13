@@ -24,7 +24,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
     public BufferedImage[] kartImg = new BufferedImage[9];
 
     //Game stuff
-    public int windowNum = 5;
+    public int windowNum = 1;
     public int mapNum = 2;
     public int kartType = 3;
 
@@ -99,16 +99,20 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
                 game.drawGame(g, kart, mapNum, inGameTime);
                 break;
             case 1:
-                mainMenu.drawMainMenu(g);
+                mainMenu.drawMainMenu(g, p, mouseClicked);
+                this.windowNum = mainMenu.windowNum;
                 break;
             case 2:
-                instructions.drawInstructions(g);
+                instructions.drawInstructions(g, p, mouseClicked);
+                this.windowNum = instructions.windowNum;
                 break;
             case 3:
-                controls.drawControls(g);
+                controls.drawControls(g, p, mouseClicked);
+                this.windowNum = controls.windowNum;
                 break;
             case 4:
-                playMenu.drawPlayMenu(g, kartImg);
+                playMenu.drawPlayMenu(g, kartImg, p, mouseClicked, inGameTime);
+                this.windowNum = playMenu.windowNum;
                 break;
             case 5:
                 winScreen.drawWinScreen(g, kartImg[kartType], p, mouseClicked);

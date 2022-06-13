@@ -3,8 +3,12 @@ package src.gameWindows;
 import java.awt.*;
 
 public class MainMenu extends GeneralWindow{
+
+    public int windowNum = 1;
     
-    public void drawMainMenu(Graphics g) {
+    public void drawMainMenu(Graphics g, Point p, boolean mouseClicked) {
+
+        windowNum = 1;
 
         g.drawImage(background, 0, 0, 1920, 1080, null);
         g.drawImage(logo, (1920/2) - (logo.getWidth()/2), 195, null);
@@ -20,10 +24,41 @@ public class MainMenu extends GeneralWindow{
         xPoly = new int[]{1440, 1640, 1660, 1420};
         Polygon p3 = new Polygon(xPoly, yPoly, 4);
 
-        g.setColor(Color.CYAN); 
-        g.fillPolygon(p1);
-        g.fillPolygon(p2);
-        g.fillPolygon(p3);
+        if (p1.contains(p)) {
+            g.setColor(new Color(24, 134, 153));
+            g.fillPolygon(p1);
+
+            if (mouseClicked) {
+                windowNum = 4;
+            }
+        } else {
+            g.setColor(Color.CYAN);
+            g.fillPolygon(p1);
+        }
+
+        if (p2.contains(p)) {
+            g.setColor(new Color(24, 134, 153));
+            g.fillPolygon(p2);
+
+            if (mouseClicked) {
+                windowNum = 3;
+            }
+        } else {
+            g.setColor(Color.CYAN);
+            g.fillPolygon(p2);
+        }
+
+        if (p3.contains(p)) {
+            g.setColor(new Color(24, 134, 153));
+            g.fillPolygon(p3);
+
+            if (mouseClicked) {
+                windowNum = 2;
+            }
+        } else {
+            g.setColor(Color.CYAN);
+            g.fillPolygon(p3);
+        }
 
         g.setColor(Color.BLACK);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 64));
