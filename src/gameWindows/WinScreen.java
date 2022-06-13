@@ -4,8 +4,10 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 public class WinScreen extends GeneralWindow{
+
+    public int windowNum = 5;
     
-    public void drawWinScreen(Graphics g, BufferedImage kart) {
+    public void drawWinScreen(Graphics g, BufferedImage kart, Point p, boolean mouseClicked) {
 
         Graphics2D g2 = (Graphics2D) g;
         Stroke oldStroke = g2.getStroke();
@@ -16,7 +18,15 @@ public class WinScreen extends GeneralWindow{
         int xPoly[] = {1140, 1740, 1780, 1100};
         int yPoly[] = {785, 785, 945, 945};
         Polygon p1 = new Polygon(xPoly, yPoly, 4);
-        g.setColor(Color.CYAN);
+        if (p1.contains(p)) {
+            g.setColor(new Color(24, 134, 153));
+
+            if (mouseClicked) {
+                windowNum = 1;
+            }
+        } else {
+            g.setColor(Color.CYAN);
+        }
         g.fillPolygon(p1);
 
         g.setColor(Color.BLACK);

@@ -23,6 +23,7 @@ public class Main {
         frame.setVisible(true);
  
         frame.addKeyListener(event);
+        frame.addMouseListener(panel);
 
         panel.inGameTime.startTimer();
         frame.add(panel);
