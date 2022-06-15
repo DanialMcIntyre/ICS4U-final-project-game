@@ -15,24 +15,6 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
     //Declaring variables
     Main main = new Main();
 
-    //Timers
-    public final int framerate = 100;
-    public Timer timer = new Timer(1000 / framerate, this);
-    public GameTime inGameTime = new GameTime();
-
-    //Images
-    public BufferedImage[] kartImg = new BufferedImage[9];
-
-    //Game stuff
-    public int windowNum = 0;
-    public int mapNum = 3;
-    public int kartType = 3;
-
-    //Mouse vars
-    public boolean mouseClicked = false;
-    PointerInfo pi = MouseInfo.getPointerInfo();
-    Point p = pi.getLocation();
- 
     //Objects
     public Kart kart;
 
@@ -42,6 +24,23 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
     Controls controls = new Controls();
     PlayMenu playMenu = new PlayMenu();
     WinScreen winScreen = new WinScreen();
+
+    //Timers
+    public final int framerate = 100;
+    public Timer timer = new Timer(1000 / framerate, this);
+    public GameTime inGameTime = new GameTime();
+
+    //Images
+    public BufferedImage[] kartImg = new BufferedImage[9];
+
+    //Game stuff
+    public int mapNum = 4;
+    public int kartType = playMenu.getKartNum();
+
+    //Mouse vars
+    public boolean mouseClicked = false;
+    PointerInfo pi = MouseInfo.getPointerInfo();
+    Point p = pi.getLocation();
     
     public GamePanel() {
  
@@ -78,7 +77,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
     }
 
     public void setWindowNum(int num) {
-        windowNum = num;
+        GeneralWindow.windowNum = num;
     }
 
     public void setMouseClicked(boolean mC) {
@@ -94,29 +93,24 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
         pi = MouseInfo.getPointerInfo();
         p = pi.getLocation();
 
-        switch(windowNum) {
+        switch(GeneralWindow.windowNum) {
             case 0:
                 game.drawGame(g, kart, mapNum, inGameTime);
                 break;
             case 1:
                 mainMenu.drawMainMenu(g, p, mouseClicked);
-                this.windowNum = mainMenu.windowNum;
                 break;
             case 2:
                 instructions.drawInstructions(g, p, mouseClicked);
-                this.windowNum = instructions.windowNum;
                 break;
             case 3:
                 controls.drawControls(g, p, mouseClicked);
-                this.windowNum = controls.windowNum;
                 break;
             case 4:
                 playMenu.drawPlayMenu(g, kartImg, p, mouseClicked, inGameTime);
-                this.windowNum = playMenu.windowNum;
                 break;
             case 5:
                 winScreen.drawWinScreen(g, kartImg[kartType], p, mouseClicked);
-                this.windowNum = winScreen.windowNum;
                 break;
         }
 
@@ -144,10 +138,13 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
             case 3:
                 game.map4.checkCollision(kart);
                 break;
+            case 4:
+                game.map5.checkCollision(kart);
+                break;
         }
 
-        if (GeneralMap.lapCount == 5) {
-            windowNum = 5;
+        if (GeneralMap.lapCount == -1) {
+            GeneralWindow.windowNum = 5;
         }
 
         //Repaints screen

@@ -3,13 +3,9 @@ package src.gameWindows;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-public class WinScreen extends GeneralWindow{
-
-    public int windowNum = 5;
+public class WinScreen extends GeneralWindow {
     
     public void drawWinScreen(Graphics g, BufferedImage kart, Point p, boolean mouseClicked) {
-
-        windowNum = 5;
 
         Graphics2D g2 = (Graphics2D) g;
         Stroke oldStroke = g2.getStroke();

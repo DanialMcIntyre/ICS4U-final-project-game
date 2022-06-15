@@ -6,12 +6,9 @@ import src.GameTime;
 
 public class PlayMenu extends GeneralWindow {
 
-    private int kartNum = 6;
-    public int windowNum = 4;
+    private int kartNum = 0;
     
     public void drawPlayMenu(Graphics g, BufferedImage[] karts, Point p, boolean mouseClicked, GameTime iGT) {
-
-        windowNum = 4;
 
         Graphics2D g2 = (Graphics2D) g;
         Stroke oldStroke = g2.getStroke();

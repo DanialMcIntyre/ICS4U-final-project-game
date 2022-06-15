@@ -84,4 +84,11 @@ public class GeneralMap {
         }
     } 
 
+    public void portalCollision(Obstacle wall, Kart kart, int x, int y) {
+        if (wall.getIsCollided()) {
+            kart.setXPos(x);
+            kart.setYPos(y);
+        }
+    }
+
 }

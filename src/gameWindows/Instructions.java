@@ -2,13 +2,9 @@ package src.gameWindows;
 
 import java.awt.*;
 
-public class Instructions extends GeneralWindow{
-
-    public int windowNum = 2;
+public class Instructions extends GeneralWindow {
 
     public void drawInstructions(Graphics g, Point p, boolean mouseClicked) {
-
-        windowNum = 2;
 
         g.drawImage(background, 0, 0, 1920, 1080, null);
 
@@ -21,9 +17,11 @@ public class Instructions extends GeneralWindow{
             if (mouseClicked) {
                 windowNum = 1;
             }
+
         } else {
             g.setColor(Color.CYAN);
         }
+        
         g.fillPolygon(p1);
         g.setColor(Color.BLACK);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 64));

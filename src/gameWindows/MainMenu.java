@@ -2,26 +2,26 @@ package src.gameWindows;
 
 import java.awt.*;
 
-public class MainMenu extends GeneralWindow{
+public class MainMenu extends GeneralWindow {
 
-    public int windowNum = 1;
-    
     public void drawMainMenu(Graphics g, Point p, boolean mouseClicked) {
 
-        windowNum = 1;
-
         g.drawImage(background, 0, 0, 1920, 1080, null);
-        g.drawImage(logo, (1920/2) - (logo.getWidth()/2), 195, null);
+        g.drawImage(logo, (1920 / 2) - (logo.getWidth() / 2), 195, null);
 
-        int xPoly[] = {720, 1200, 1220, 700};
-        int yPoly[] = {800, 800, 950, 950};
-        Polygon p1 = new Polygon(xPoly, yPoly, 4); 
+        g.setColor(Color.WHITE);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+        g.drawString("Coords: " + p.getX() + ", " + p.getY(), 25, 100);
 
-        xPoly = new int[]{280, 480, 500, 260};
-        yPoly = new int[]{820, 820, 930, 930};
+        int xPoly[] = { 720, 1200, 1220, 700 };
+        int yPoly[] = { 800, 800, 950, 950 };
+        Polygon p1 = new Polygon(xPoly, yPoly, 4);
+
+        xPoly = new int[] { 280, 480, 500, 260 };
+        yPoly = new int[] { 820, 820, 930, 930 };
         Polygon p2 = new Polygon(xPoly, yPoly, 4);
 
-        xPoly = new int[]{1440, 1640, 1660, 1420};
+        xPoly = new int[] { 1440, 1640, 1660, 1420 };
         Polygon p3 = new Polygon(xPoly, yPoly, 4);
 
         if (p1.contains(p)) {

@@ -8,11 +8,8 @@ public class Controls extends GeneralWindow {
     public BufferedImage mouseImg;
     public BufferedImage wasdImg;
     public BufferedImage arrowsImg;
-    public int windowNum = 3;
 
     public void drawControls(Graphics g, Point p, boolean mouseClicked) {
-
-        windowNum = 3;
 
         g.drawImage(background, 0, 0, 1920, 1080, null);
 
@@ -56,7 +53,6 @@ public class Controls extends GeneralWindow {
         g.drawString("and accelerate with the up arrow", 1195, 450);
         g.drawString("key or ‘w’ and finally brake using", 1198, 500);
         g.drawString("the down arrow or ‘s’.", 1275, 550);
-
 
     }
 
