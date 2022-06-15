@@ -2,6 +2,7 @@ package src.gameWindows;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import src.maps.GeneralMap;
 
 public class WinScreen extends GeneralWindow {
     
@@ -20,6 +21,7 @@ public class WinScreen extends GeneralWindow {
             g.setColor(new Color(24, 134, 153));
 
             if (mouseClicked) {
+                GeneralMap.lapCount = 0;
                 windowNum = 1;
             }
         } else {
@@ -47,6 +49,7 @@ public class WinScreen extends GeneralWindow {
         g.drawString("Best All Time Lap: ", 190, 500);
         g.drawString("Completion Time: ", 200, 625);
         g.drawString("Best Completion: ", 210, 750);
+        //Could add an all time laps completed
 
         g.drawImage(kart, (int)(1440 - (kart.getWidth()*.75)), (int)(500 - (kart.getHeight()*1.25)), (int)(kart.getWidth()*1.5), (int)(kart.getHeight()*1.5), null);
 

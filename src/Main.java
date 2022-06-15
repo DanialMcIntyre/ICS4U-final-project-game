@@ -7,10 +7,9 @@ public class Main {
  
     public static void main(String args[]) {
  
-        //Dimension size = Toolkit.getDefaultToolkit().getScreenSize();
- 
         GamePanel panel = new GamePanel();
         EventListener event = new EventListener(panel.kart);
+        MouseEventHandler mL = new MouseEventHandler(panel);
        
         JFrame frame = new JFrame();
        
@@ -23,9 +22,9 @@ public class Main {
         frame.setVisible(true);
  
         frame.addKeyListener(event);
-        frame.addMouseListener(panel);
+        panel.addMouseListener(mL);
+        panel.addMouseMotionListener(mL);
 
-        panel.inGameTime.startTimer();
         frame.add(panel);
     }
  

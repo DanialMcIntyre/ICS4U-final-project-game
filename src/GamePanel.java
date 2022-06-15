@@ -10,7 +10,7 @@ import src.gameWindows.*;
 
 import javax.imageio.ImageIO;
  
-public class GamePanel extends JPanel implements ActionListener, MouseListener {
+public class GamePanel extends JPanel implements ActionListener {
  
     //Declaring variables
     Main main = new Main();
@@ -34,13 +34,12 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
     public BufferedImage[] kartImg = new BufferedImage[9];
 
     //Game stuff
-    public int mapNum = 4;
+    public int mapNum = 1;
     public int kartType = playMenu.getKartNum();
 
     //Mouse vars
     public boolean mouseClicked = false;
-    PointerInfo pi = MouseInfo.getPointerInfo();
-    Point p = pi.getLocation();
+    public Point p = new Point();
     
     public GamePanel() {
  
@@ -75,23 +74,12 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
         }
  
     }
-
-    public void setWindowNum(int num) {
-        GeneralWindow.windowNum = num;
-    }
-
-    public void setMouseClicked(boolean mC) {
-        mouseClicked = mC;
-    }
  
     //Draw stuff of screen
     public void paint(Graphics g) {
  
         //Clears screen
         super.paint(g);
-
-        pi = MouseInfo.getPointerInfo();
-        p = pi.getLocation();
 
         switch(GeneralWindow.windowNum) {
             case 0:
@@ -143,7 +131,7 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
                 break;
         }
 
-        if (GeneralMap.lapCount == -1) {
+        if (GeneralMap.lapCount == 5) {
             GeneralWindow.windowNum = 5;
         }
 
@@ -151,22 +139,5 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
         repaint();
  
     }
-
-    @Override
-    public void mouseClicked(MouseEvent e) {
-        mouseClicked = true;
-    }
-
-    @Override
-    public void mouseEntered(MouseEvent arg0) { }
-
-    @Override
-    public void mouseExited(MouseEvent arg0) { }
-
-    @Override
-    public void mousePressed(MouseEvent arg0) { }
-
-    @Override
-    public void mouseReleased(MouseEvent arg0) { }
  
 }
