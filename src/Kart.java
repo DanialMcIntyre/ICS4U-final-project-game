@@ -20,6 +20,7 @@ public class Kart extends Physics {
  
     private double tractionLevel = 1;
     private double frictionLevel = 0.0;
+    private boolean isBoosted = false;
  
     private BufferedImage kart;
  
@@ -88,6 +89,10 @@ public class Kart extends Physics {
         return this.tractionLevel;
     }
 
+    public boolean getIsBoosted() {
+        return this.isBoosted;
+    }
+
     //Setters
  
     public void setXPos(int x) {
@@ -126,6 +131,10 @@ public class Kart extends Physics {
         this.tractionLevel = t;
     }
 
+    public void setIsBoosted(boolean b) {
+        this.isBoosted = b;
+    }
+
     //Draw function
     public void draw(Graphics g) {
         double radian = -Math.toRadians(angle);
@@ -150,9 +159,9 @@ public class Kart extends Physics {
         if (getAccTime() < 10) {
             setAccTime(getAccTime() + 0.1);  
         }
-        if (getAccTime() > 10) {
-            setAccTime(10);
-        }
+        if (getAccTime() > 10 && !getIsBoosted()) {
+            setAccTime(getAccTime() - 0.1);
+        } 
     }
 
     //W key pressed

@@ -72,4 +72,16 @@ public class GeneralMap {
             kart.setTractionLevel(1);
         }
     } 
+
+    //What happens when you drive on dirt
+    public void boostCollision(Obstacle wall, Kart kart, double max, double incr) {
+        if (wall.getIsCollided() && kart.getAccTime() <= max && !kart.getIsDeccelerating()) {
+            kart.setAccTime(kart.getAccTime() + incr);
+            kart.setIsBoosted(true);
+        } else {
+            kart.setAccTime(kart.getAccTime());
+            kart.setIsBoosted(false);
+        }
+    } 
+
 }

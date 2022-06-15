@@ -10,6 +10,7 @@ public class Game {
     public Map1 map1 = new Map1();
     public Map2 map2 = new Map2();
     public Map3 map3 = new Map3();
+    public Map4 map4 = new Map4();
 
     public void drawGame(Graphics g, Kart kart, int mapNum, GameTime inGameTime) {
         
@@ -26,6 +27,9 @@ public class Game {
                 break;  
             case 2:
                 map3.drawMap(g);
+                break;  
+            case 3:
+                map4.drawMap(g);
                 break;  
         }
 

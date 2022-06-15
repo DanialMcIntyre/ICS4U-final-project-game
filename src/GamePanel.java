@@ -24,8 +24,8 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
     public BufferedImage[] kartImg = new BufferedImage[9];
 
     //Game stuff
-    public int windowNum = 1;
-    public int mapNum = 2;
+    public int windowNum = 0;
+    public int mapNum = 3;
     public int kartType = 3;
 
     //Mouse vars
@@ -140,6 +140,9 @@ public class GamePanel extends JPanel implements ActionListener, MouseListener {
                 break;
             case 2:
                 game.map3.checkCollision(kart);
+                break;
+            case 3:
+                game.map4.checkCollision(kart);
                 break;
         }
 
