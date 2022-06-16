@@ -24,6 +24,7 @@ public class GamePanel extends JPanel implements ActionListener {
     Controls controls = new Controls();
     PlayMenu playMenu = new PlayMenu();
     WinScreen winScreen = new WinScreen();
+    MapMenu mapMenu = new MapMenu();
 
     //Timers
     public final int framerate = 100;
@@ -34,8 +35,7 @@ public class GamePanel extends JPanel implements ActionListener {
     public BufferedImage[] kartImg = new BufferedImage[9];
 
     //Game stuff
-    public int mapNum = 1;
-    //public int kartType = playMenu.getKartNum();
+    //public int mapNum = 4;
 
     //Mouse vars
     public boolean mouseClicked = false;
@@ -55,6 +55,12 @@ public class GamePanel extends JPanel implements ActionListener {
             kartImg[6] = ImageIO.read(getClass().getResourceAsStream("/images/karts/purplekart.png"));
             kartImg[7] = ImageIO.read(getClass().getResourceAsStream("/images/karts/tealkart.png"));
             kartImg[8] = ImageIO.read(getClass().getResourceAsStream("/images/karts/yellowkart.png"));
+
+            mapMenu.mapImgs[0] = ImageIO.read(getClass().getResourceAsStream("/images/menu/Map1Img.png"));
+            mapMenu.mapImgs[1] = ImageIO.read(getClass().getResourceAsStream("/images/menu/Map2Img.png"));
+            mapMenu.mapImgs[2] = ImageIO.read(getClass().getResourceAsStream("/images/menu/Map3Img.png"));
+            mapMenu.mapImgs[3] = ImageIO.read(getClass().getResourceAsStream("/images/menu/Map4Img.png"));
+            mapMenu.mapImgs[4] = ImageIO.read(getClass().getResourceAsStream("/images/menu/Map5Img.png"));
 
             GeneralMap.mud = ImageIO.read(getClass().getResourceAsStream("/images/mapparts/mud.png"));
             GeneralMap.border = ImageIO.read(getClass().getResourceAsStream("/images/mapparts/border.png"));
@@ -83,7 +89,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
         switch(GeneralWindow.windowNum) {
             case 0:
-                game.drawGame(g, kart, mapNum, inGameTime);
+                game.drawGame(g, kart, mapMenu.mapNum, inGameTime);
                 break;
             case 1:
                 mainMenu.drawMainMenu(g, p, mouseClicked);
@@ -100,6 +106,9 @@ public class GamePanel extends JPanel implements ActionListener {
             case 5:
                 winScreen.drawWinScreen(g, kartImg[playMenu.getKartNum()], p, mouseClicked);
                 break;
+            case 6:
+                mapMenu.drawMapMenu(g, p, mouseClicked);
+                break;
         }
 
         mouseClicked = false;
@@ -113,7 +122,7 @@ public class GamePanel extends JPanel implements ActionListener {
         //Updates kart position
         kart.updateKart();
 
-        switch (mapNum) {
+        switch (mapMenu.mapNum) {
             case 0:
                 game.map1.checkCollision(kart);
                 break;

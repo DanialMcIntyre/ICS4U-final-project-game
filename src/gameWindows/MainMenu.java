@@ -9,10 +9,6 @@ public class MainMenu extends GeneralWindow {
         g.drawImage(background, 0, 0, 1920, 1080, null);
         g.drawImage(logo, (1920 / 2) - (logo.getWidth() / 2), 195, null);
 
-        g.setColor(Color.WHITE);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-        g.drawString("Coords: " + p.getX() + ", " + p.getY(), 25, 100);
-
         int xPoly[] = { 720, 1200, 1220, 700 };
         int yPoly[] = { 800, 800, 950, 950 };
         Polygon p1 = new Polygon(xPoly, yPoly, 4);
@@ -29,7 +25,7 @@ public class MainMenu extends GeneralWindow {
             g.fillPolygon(p1);
 
             if (mouseClicked) {
-                windowNum = 4;
+                windowNum = 6;
             }
         } else {
             g.setColor(Color.CYAN);
