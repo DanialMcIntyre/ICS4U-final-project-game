@@ -135,6 +135,10 @@ public class Kart extends Physics {
         this.isBoosted = b;
     }
 
+    public void setImage(BufferedImage img) {
+        this.kart = img;
+    }
+
     //Draw function
     public void draw(Graphics g) {
         double radian = -Math.toRadians(angle);

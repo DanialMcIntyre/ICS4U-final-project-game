@@ -35,7 +35,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
     //Game stuff
     public int mapNum = 1;
-    public int kartType = playMenu.getKartNum();
+    //public int kartType = playMenu.getKartNum();
 
     //Mouse vars
     public boolean mouseClicked = false;
@@ -65,7 +65,7 @@ public class GamePanel extends JPanel implements ActionListener {
             controls.wasdImg = ImageIO.read(getClass().getResourceAsStream("/images/menu/wasd.png"));
             controls.arrowsImg = ImageIO.read(getClass().getResourceAsStream("/images/menu/arrows.png"));
  
-            kart = new Kart(100, 100, 0, 0, 0, kartImg[kartType]);
+            kart = new Kart(100, 100, 0, 0, 0, kartImg[playMenu.getKartNum()]);
  
         } catch (IOException e) {
  
@@ -95,10 +95,10 @@ public class GamePanel extends JPanel implements ActionListener {
                 controls.drawControls(g, p, mouseClicked);
                 break;
             case 4:
-                playMenu.drawPlayMenu(g, kartImg, p, mouseClicked, inGameTime);
+                playMenu.drawPlayMenu(g, kartImg, p, mouseClicked, inGameTime, kart);
                 break;
             case 5:
-                winScreen.drawWinScreen(g, kartImg[kartType], p, mouseClicked);
+                winScreen.drawWinScreen(g, kartImg[playMenu.getKartNum()], p, mouseClicked);
                 break;
         }
 

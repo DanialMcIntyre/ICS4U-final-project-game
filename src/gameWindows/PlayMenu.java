@@ -3,12 +3,13 @@ package src.gameWindows;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import src.GameTime;
+import src.Kart;
 
 public class PlayMenu extends GeneralWindow {
 
     private int kartNum = 0;
     
-    public void drawPlayMenu(Graphics g, BufferedImage[] karts, Point p, boolean mouseClicked, GameTime iGT) {
+    public void drawPlayMenu(Graphics g, BufferedImage[] karts, Point p, boolean mouseClicked, GameTime iGT, Kart kart) {
 
         Graphics2D g2 = (Graphics2D) g;
         Stroke oldStroke = g2.getStroke();
@@ -23,6 +24,7 @@ public class PlayMenu extends GeneralWindow {
             g.setColor(new Color(24, 134, 153));
 
             if (mouseClicked) {
+                kart.setImage(karts[kartNum]);
                 iGT.startTimer();
                 windowNum = 0;
             }
@@ -51,6 +53,53 @@ public class PlayMenu extends GeneralWindow {
         g.drawImage(karts[6], (int)((760*.25) - (karts[6].getWidth()*.5) + 150), (int)((800*.75) - (karts[6].getHeight()*.5) + 225), (int)(karts[6].getWidth()*.5), (int)(karts[6].getHeight()*.5), null);
         g.drawImage(karts[7], (int)((760*.5) - (karts[7].getWidth()*.5) + 175), (int)((800*.75) - (karts[7].getHeight()*.5) + 225), (int)(karts[7].getWidth()*.5), (int)(karts[7].getHeight()*.5), null);
         g.drawImage(karts[8], (int)((760*.75) - (karts[8].getWidth()*.5) + 200), (int)((800*.75) - (karts[8].getHeight()*.5) + 225), (int)(karts[8].getWidth()*.5), (int)(karts[8].getHeight()*.5), null);
+
+        if (p.getX() > 179 && p.getX() < 340 && p.getY() > 264 && p.getY() < 425) {
+            g.drawRoundRect(179, 264, 161, 161, 15, 15);
+            if (mouseClicked) {
+                kartNum = 0;
+            }
+        } else if (p.getX() > 394 && p.getX() < 555 && p.getY() > 264 && p.getY() < 425) {
+            g.drawRoundRect(394, 264, 161, 161, 15, 15);
+            if (mouseClicked) {
+                kartNum = 1;
+            }
+        } else if (p.getX() > 609 && p.getX() < 770 && p.getY() > 264 && p.getY() < 425) {
+            g.drawRoundRect(609, 264, 161, 161, 15, 15);
+            if (mouseClicked) {
+                kartNum = 2;
+            }
+        } else if (p.getX() > 179 && p.getX() < 340 && p.getY() > 464 && p.getY() < 625) {
+            g.drawRoundRect(179, 464, 161, 161, 15, 15);
+            if (mouseClicked) {
+                kartNum = 3;
+            }
+        } else if (p.getX() > 394 && p.getX() < 555 && p.getY() > 464 && p.getY() < 625) {
+            g.drawRoundRect(394, 464, 161, 161, 15, 15);
+            if (mouseClicked) {
+                kartNum = 4;
+            }
+        } else if (p.getX() > 609 && p.getX() < 770 && p.getY() > 464 && p.getY() < 625) {
+            g.drawRoundRect(609, 464, 161, 161, 15, 15);
+            if (mouseClicked) {
+                kartNum = 5;
+            }
+        } else if (p.getX() > 179 && p.getX() < 340 && p.getY() > 664 && p.getY() < 825) {
+            g.drawRoundRect(179, 664, 161, 161, 15, 15);
+            if (mouseClicked) {
+                kartNum = 6;
+            }
+        } else if (p.getX() > 394 && p.getX() < 555 && p.getY() > 664 && p.getY() < 825) {
+            g.drawRoundRect(394, 664, 161, 161, 15, 15);
+            if (mouseClicked) {
+                kartNum = 7;
+            }
+        } else if (p.getX() > 609 && p.getX() < 770 && p.getY() > 664 && p.getY() < 825) {
+            g.drawRoundRect(609, 664, 161, 161, 15, 15);
+            if (mouseClicked) {
+                kartNum = 8;
+            }
+        }
 
         g.drawImage(karts[kartNum], (int)(1440 - (karts[kartNum].getWidth()*.75)), (int)(500 - (karts[kartNum].getHeight()*1.25)), (int)(karts[kartNum].getWidth()*1.5), (int)(karts[kartNum].getHeight()*1.5), null);
 
