@@ -3,6 +3,7 @@ package src.maps;
 import java.awt.*;
 
 import src.Kart;
+import src.GameTime;
 import src.obstacles.*;
 
 public class Map4 extends GeneralMap {
@@ -33,7 +34,7 @@ public class Map4 extends GeneralMap {
     }
 
     //Checks collision of obstacles
-    public void checkCollision(Kart kart) {
+    public void checkCollision(Kart kart, GameTime iGT) {
 
         this.borderCollision(kart);
         wall.collision(kart);
@@ -47,14 +48,14 @@ public class Map4 extends GeneralMap {
         finish.collision(kart);
         cp.collision(kart);
 
-        onCollision(kart);
+        onCollision(kart, iGT);
     }
 
     //Does stuff when collision occur
-    public void onCollision(Kart kart) {
+    public void onCollision(Kart kart, GameTime iGT) {
 
         this.onBorderCollision(kart);
-        this.finishLineLogic(cp, finish);
+        this.finishLineLogic(cp, finish, iGT);
 
         wallCollision(wall, kart);
         wallCollision(wall2, kart);

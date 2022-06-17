@@ -4,6 +4,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.awt.image.BufferedImage;
 import javax.swing.*;
+import java.util.Collections;
 
 import src.maps.*;
 import src.gameWindows.*;
@@ -35,7 +36,7 @@ public class GamePanel extends JPanel implements ActionListener {
     public BufferedImage[] kartImg = new BufferedImage[9];
 
     //Game stuff
-    //public int mapNum = 4;
+    public double compTime;
 
     //Mouse vars
     public boolean mouseClicked = false;
@@ -104,7 +105,7 @@ public class GamePanel extends JPanel implements ActionListener {
                 playMenu.drawPlayMenu(g, kartImg, p, mouseClicked, inGameTime, kart);
                 break;
             case 5:
-                winScreen.drawWinScreen(g, kartImg[playMenu.getKartNum()], p, mouseClicked);
+                winScreen.drawWinScreen(g, kartImg[playMenu.getKartNum()], p, mouseClicked, compTime);
                 break;
             case 6:
                 mapMenu.drawMapMenu(g, p, mouseClicked);
@@ -124,23 +125,25 @@ public class GamePanel extends JPanel implements ActionListener {
 
         switch (mapMenu.mapNum) {
             case 0:
-                game.map1.checkCollision(kart);
+                game.map1.checkCollision(kart, inGameTime);
                 break;
             case 1:
-                game.map2.checkCollision(kart);
+                game.map2.checkCollision(kart, inGameTime);
                 break;
             case 2:
-                game.map3.checkCollision(kart);
+                game.map3.checkCollision(kart, inGameTime);
                 break;
             case 3:
-                game.map4.checkCollision(kart);
+                game.map4.checkCollision(kart, inGameTime);
                 break;
             case 4:
-                game.map5.checkCollision(kart);
+                game.map5.checkCollision(kart, inGameTime);
                 break;
         }
 
         if (GeneralMap.lapCount == 5) {
+            compTime = inGameTime.getCurrentTime();
+            Collections.sort(GeneralMap.lapTimes);
             GeneralWindow.windowNum = 5;
         }
 

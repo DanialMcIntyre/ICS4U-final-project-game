@@ -2,6 +2,7 @@ package src.maps;
 
 import java.awt.image.BufferedImage;
 import java.awt.*;
+import java.util.*;
 
 import src.obstacles.*;
 import src.*;
@@ -10,6 +11,7 @@ public class GeneralMap {
 
     public static int lapCount = 0;
     public static boolean checkPointHit = false;
+    public static LinkedList<Double> lapTimes = new LinkedList<Double>();
     
     public static BufferedImage startLineImg;
     public static BufferedImage mud;
@@ -45,13 +47,18 @@ public class GeneralMap {
     }
 
     //What happens when you cross finish line
-    public void finishLineLogic(RectangleObstacle cp, RectangleObstacle finish) {
+    public void finishLineLogic(RectangleObstacle cp, RectangleObstacle finish, GameTime iGT) {
         
         if (cp.getIsCollided()) {
             checkPointHit = true;
         }
 
         if (finish.getIsCollided() && checkPointHit) {
+            if (lapCount == 0) {
+                lapTimes.add((double)iGT.getCurrentTime());
+            } else {
+                lapTimes.add((double)(iGT.getCurrentTime() - lapTimes.getLast()));
+            }
             lapCount += 1;
             checkPointHit = false;
         }
