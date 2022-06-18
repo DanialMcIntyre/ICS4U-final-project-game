@@ -9,6 +9,10 @@ import java.util.*;
 
 public class WinScreen extends GeneralWindow {
     
+    LinkedList<Double> allTimeStats = new LinkedList<Double>();
+
+    boolean executed = false;
+
     public void drawWinScreen(Graphics g, BufferedImage kart, Point p, boolean mouseClicked, double cT) {
 
         GeneralMap.lapCount = 0;
@@ -26,7 +30,20 @@ public class WinScreen extends GeneralWindow {
             g.setColor(new Color(24, 134, 153));
 
             if (mouseClicked) {
-                GeneralMap.lapCount = 0;
+                
+                try {
+                    new PrintWriter("src/Stats.txt").close();
+                    FileWriter mFW = new FileWriter("src/Stats.txt");
+                    BufferedWriter writer = new BufferedWriter(mFW);
+                    for (double i : allTimeStats) {
+                        writer.write(Double.toString(i));
+                        writer.newLine();
+                    }
+                    writer.close();
+                } catch (IOException e){
+                    e.printStackTrace();
+                }
+
                 windowNum = 1;
             }
         } else {
@@ -46,30 +63,36 @@ public class WinScreen extends GeneralWindow {
         g.setColor(Color.BLACK);
         g.drawPolygon(p2);
 
-        LinkedList<Double> allTimeStats = new LinkedList<Double>();
-        File file = new File("src/stats.txt");
-        String content = new String();
+        if (!executed) {
 
-        try {
-            Scanner sc = new Scanner(new FileInputStream(file));
-            while (sc.hasNextLine()){
-                content = sc.nextLine();
-                allTimeStats.add(Double.valueOf(content));
+            File file = new File("src/stats.txt");
+            String content = new String();
+
+            try {
+                Scanner sc = new Scanner(new FileInputStream(file));
+                while (sc.hasNextLine()){
+                    content = sc.nextLine();
+                    allTimeStats.add(Double.valueOf(content));
+                }
+                sc.close();
+
+            } catch(FileNotFoundException fnf){
+                fnf.printStackTrace();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
-            sc.close();
 
-        } catch(FileNotFoundException fnf){
-            fnf.printStackTrace();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            allTimeStats.set(2, allTimeStats.get(2) + 5);
 
-        allTimeStats.set(2, allTimeStats.get(2) + 5);
-        if (GeneralMap.lapTimes.getFirst() < allTimeStats.get(0)) {
-            allTimeStats.set(0, GeneralMap.lapTimes.getFirst());
-        }
-        if (cT < allTimeStats.get(1)) {
-            allTimeStats.set(1, cT);
+            if (GeneralMap.lapTimes.getFirst() < allTimeStats.get(0)) {
+                allTimeStats.set(0, GeneralMap.lapTimes.getFirst());
+            }
+            if (cT < allTimeStats.get(1)) {
+                allTimeStats.set(1, cT);
+            }
+        
+        executed = true;
+
         }
 
         g.fillRect(160, 275, 640, 3);
