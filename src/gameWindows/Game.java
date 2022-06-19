@@ -39,8 +39,6 @@ public class Game {
 
         //Draws UI
         g.setColor(Color.WHITE);
-        g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-        //g.drawString("Speed: " + String.valueOf(Math.round((kart.getAcceleration() * kart.getAccTime()) / kart.getTractionLevel())), 500, 500);
         g.setFont(new Font("Georgia", Font.PLAIN, 24));
         g.drawString("Laps Completed: " + String.valueOf(GeneralMap.lapCount), 25, 100);
         g.drawString("Elapsed Time: " + String.format("%.02f", inGameTime.getCurrentTime()), 250, 100);

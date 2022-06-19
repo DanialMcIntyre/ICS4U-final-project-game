@@ -44,6 +44,10 @@ public class WinScreen extends GeneralWindow {
                     e.printStackTrace();
                 }
 
+                allTimeStats = new LinkedList<Double>();
+                executed = false;
+                GeneralMap.lapTimes = new LinkedList<Double>();
+
                 windowNum = 1;
             }
         } else {
