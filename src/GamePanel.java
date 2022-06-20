@@ -139,6 +139,9 @@ public class GamePanel extends JPanel implements ActionListener {
             case 4:
                 game.map5.checkCollision(kart, inGameTime);
                 break;
+            case 5:
+                game.map6.checkCollision(kart, inGameTime);
+                break;
         }
 
         if (GeneralMap.lapCount == 5) {

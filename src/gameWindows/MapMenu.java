@@ -68,6 +68,11 @@ public class MapMenu extends GeneralWindow {
             if (mouseClicked) {
                 mapNum = 4;
             }
+        } else if (p.getX() > 1260 && p.getX() < 1700 && p.getY() > 456 && p.getY() < 756 && (mapNum != 5)) {
+            g.drawRect(1260, 456, 440, 300);
+            if (mouseClicked) {
+                mapNum = 5;
+            }
         }
 
         g.setColor(new Color (181, 14, 14));
@@ -87,6 +92,9 @@ public class MapMenu extends GeneralWindow {
                 break;
             case 4:
                 g.drawRect(750, 456, 440, 300);
+                break;
+            case 5:
+                g.drawRect(1260, 456, 440, 300);
                 break;
         }   
 
