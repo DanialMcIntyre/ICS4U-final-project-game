@@ -1,6 +1,7 @@
 package src.gameWindows;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 import src.maps.*;
 import src.*;
@@ -14,8 +15,16 @@ public class Game {
     public Map5 map5 = new Map5();
     public Map6 map6 = new Map6();
 
-    public void drawGame(Graphics g, Kart kart, int mapNum, GameTime inGameTime) {
+    boolean visible = false;
+
+    public BufferedImage checkMark;
+
+    public void drawGame(Graphics g, Kart kart, int mapNum, GameTime inGameTime, Point p, boolean mouseClicked) {
         
+        Graphics2D g2 = (Graphics2D) g;
+        Stroke oldStroke = g2.getStroke();
+        g2.setStroke(new BasicStroke(7));
+
         g.setColor(Color.GREEN);
         g.fillRect(0, 0, 1920, 1080);
 
@@ -43,15 +52,29 @@ public class Game {
 
         //Draws UI
         g.setColor(Color.WHITE);
+        g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
+        g.drawString("Speed: " + String.valueOf(Math.round((kart.getAcceleration() * kart.getAccTime()) / kart.getTractionLevel())), 900, 925);
         g.setFont(new Font("Georgia", Font.PLAIN, 24));
-        g.drawString("Laps Completed: " + String.valueOf(GeneralMap.lapCount), 25, 100);
-        g.drawString("Elapsed Time: " + String.format("%.02f", inGameTime.getCurrentTime()), 250, 100);
+        g.drawString("Laps Completed: " + String.valueOf(GeneralMap.lapCount), 25, 50);
+        g.drawString("Elapsed Time: " + String.format("%.02f", inGameTime.getCurrentTime()), 250, 50);
+
+        //Hit box
+        g.drawString("Show Hitbox :", 1650, 50);
+        g.drawRoundRect(1825, 25, 50, 50, 15, 15);
+        if (p.getX() > 1825 && p.getX() < 1875 && p.getY() > 25 && p.getY() < 75 && mouseClicked) {
+            visible = !visible;
+        }
 
         //Draws kart
         kart.draw(g);
 
-        g.setColor(new Color(255, 255, 255, 150));
-        g.fillRect(kart.getXPos(), kart.getYPos(), kart.getHeight(), kart.getWidth());
+        if (visible) {
+            g.setColor(new Color(255, 255, 255, 150));
+            g.fillRect(kart.getXPos(), kart.getYPos(), kart.getHeight(), kart.getWidth());
+            g.drawImage(checkMark, 1800, 0, 100, 100, null);
+        }
+
+        g2.setStroke(oldStroke);
 
     }
     

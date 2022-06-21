@@ -69,6 +69,7 @@ public class GamePanel extends JPanel implements ActionListener {
             GeneralMap.startLineImg = ImageIO.read(getClass().getResourceAsStream("/images/mapparts/startLine.png"));
             GeneralWindow.background = ImageIO.read(getClass().getResourceAsStream("/images/menu/background.jpg"));
             GeneralWindow.logo = ImageIO.read(getClass().getResourceAsStream("/images/misc/turbokartmania.png"));
+            game.checkMark = ImageIO.read(getClass().getResourceAsStream("/images/misc/CheckMark.png"));
             controls.mouseImg = ImageIO.read(getClass().getResourceAsStream("/images/menu/mouse.png"));
             controls.wasdImg = ImageIO.read(getClass().getResourceAsStream("/images/menu/wasd.png"));
             controls.arrowsImg = ImageIO.read(getClass().getResourceAsStream("/images/menu/arrows.png"));
@@ -91,7 +92,7 @@ public class GamePanel extends JPanel implements ActionListener {
 
         switch(GeneralWindow.windowNum) {
             case 0:
-                game.drawGame(g, kart, mapMenu.mapNum, inGameTime);
+                game.drawGame(g, kart, mapMenu.mapNum, inGameTime, p, mouseClicked);
                 break;
             case 1:
                 mainMenu.drawMainMenu(g, p, mouseClicked);
