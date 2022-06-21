@@ -62,6 +62,7 @@ public class GamePanel extends JPanel implements ActionListener {
             mapMenu.mapImgs[2] = ImageIO.read(getClass().getResourceAsStream("/images/menu/Map3Img.png"));
             mapMenu.mapImgs[3] = ImageIO.read(getClass().getResourceAsStream("/images/menu/Map4Img.png"));
             mapMenu.mapImgs[4] = ImageIO.read(getClass().getResourceAsStream("/images/menu/Map5Img.png"));
+            mapMenu.mapImgs[5] = ImageIO.read(getClass().getResourceAsStream("/images/menu/Map6Img.png"));
 
             GeneralMap.mud = ImageIO.read(getClass().getResourceAsStream("/images/mapparts/mud.png"));
             GeneralMap.border = ImageIO.read(getClass().getResourceAsStream("/images/mapparts/border.png"));
@@ -108,7 +109,7 @@ public class GamePanel extends JPanel implements ActionListener {
                 winScreen.drawWinScreen(g, kartImg[playMenu.getKartNum()], p, mouseClicked, compTime);
                 break;
             case 6:
-                mapMenu.drawMapMenu(g, p, mouseClicked);
+                mapMenu.drawMapMenu(g, p, mouseClicked, kart);
                 break;
         }
 
