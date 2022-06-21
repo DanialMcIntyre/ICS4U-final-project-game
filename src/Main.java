@@ -1,6 +1,12 @@
 package src;
 
 import javax.swing.*;
+
+import src.events.MouseEventHandler;
+
+
+import src.events.EventListener;
+
 import java.awt.*;
  
 public class Main {

@@ -181,7 +181,7 @@ public class Kart extends Physics {
  
     //D key pressed
     public void moveRight() {
-        setAngle(getAngle() - 3);
+        setAngle(getAngle() - 4);
         if (getAngle() <= -1) {
             setAngle(359);
         }        
@@ -189,7 +189,7 @@ public class Kart extends Physics {
  
     //A key pressed
     public void moveLeft() {
-        setAngle(getAngle() + 3);
+        setAngle(getAngle() + 4);
         if (getAngle() >= 360) {
             setAngle(0);
         }        
@@ -203,9 +203,10 @@ public class Kart extends Physics {
  
         //Keep Inertia
         this.accTime = inertia(this.isAccelerating, this.isDeccelerating, this.accTime, this.frictionLevel);
- 
-        if (this.getXPos() > 1920) {
-            this.setXPos(0);
+
+        if (this.getXPos() > 1920 || this.getXPos() < 0 || this.getYPos() < 0 || this.getYPos() > 1080) {
+            this.setXPos(900);
+            this.setYPos(200);
         }
  
     }    

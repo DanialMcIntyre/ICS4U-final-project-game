@@ -66,8 +66,12 @@ public class GeneralMap {
 
     //What happens when you collide with a wall
     public void wallCollision(Obstacle wall, Kart kart) {
-        if (wall.getIsCollided() && !(kart.getIsDeccelerating())) {
-            kart.setAccTime(0);
+        if (wall.getIsCollided()) {
+            if (kart.getAccTime() > 0) {
+                kart.setAccTime(-3);
+            } else if (kart.getAccTime() < 0) {
+                kart.setAccTime(2);
+            }
         }
     }
 

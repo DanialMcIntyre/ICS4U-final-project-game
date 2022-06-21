@@ -53,10 +53,10 @@ public class Game {
         //Draws UI
         g.setColor(Color.WHITE);
         g.setFont(new Font("TimesRoman", Font.PLAIN, 50));
-        g.drawString("Speed: " + String.valueOf(Math.round((kart.getAcceleration() * kart.getAccTime()) / kart.getTractionLevel())), 900, 925);
         g.setFont(new Font("Georgia", Font.PLAIN, 24));
         g.drawString("Laps Completed: " + String.valueOf(GeneralMap.lapCount), 25, 50);
         g.drawString("Elapsed Time: " + String.format("%.02f", inGameTime.getCurrentTime()), 250, 50);
+        g.drawString("Speed: " + String.format("%.02f", kart.getAccTime() * kart.getAcceleration() / kart.getTractionLevel()), 500, 50);
 
         //Hit box
         g.drawString("Show Hitbox :", 1650, 50);

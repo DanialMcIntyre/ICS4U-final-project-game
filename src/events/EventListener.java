@@ -1,6 +1,9 @@
-package src;
+package src.events;
 import java.awt.event.*;
 import javax.swing.Timer;
+
+import src.GamePanel;
+import src.Kart;
 
 import java.util.HashSet;
  

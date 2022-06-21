@@ -1,6 +1,8 @@
-package src;
+package src.events;
 
 import java.awt.event.*;
+
+import src.GamePanel;
 
 public class MouseEventHandler extends GamePanel implements MouseListener, MouseMotionListener {
 
